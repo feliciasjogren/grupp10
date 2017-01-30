@@ -61,4 +61,7 @@ insert into Telefonnummer (LarareId, Nummer) values ((select Id from Larare wher
 insert into Telefonnummer (LarareId, Nummer) values ((select Id from Larare where Anvandarnamn = 'jsln'), "0706850202");
 insert into Telefonnummer (LarareId, Nummer) values ((select Id from Larare where Anvandarnamn = 'lsbg'), "0700948282");
 
+insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId)
+values (default, "Möte!", "Imorgon bitti är det möte i aulan.", "2014.03.05", false, 10, 1)
+
 set FOREIGN_KEY_CHECKS = 1;

@@ -9,87 +9,187 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
- * @author Robert Östlin (scrum master)
+ * Handles calls to mysql database.
+ * Written as an utility class.
+ * 
+ * @author Robert Östlin
  */
 public class DatabaseHandler {
+    private final static String HOST = "localhost";
+    private final static String PORT = "3306";
+    private final static String DB = "grupp10";
+    private final static String USERNAME = "root";
+    private final static String PASSWORD = "aaaa";
+    
+    /**
+     * Private constructor which does not allow objects to be created.
+     */
     private DatabaseHandler() {
         // private, no objects allowed
     }
     
-    // TODO:
+    /**
+     * Retrieves a single value from a table.
+     * @author Robert Östlin
+     * @param query Query starting with "select"
+     * @return the string of the fetched value
+     */
     public static String fetchSingle(String query) {
-        // code
-        return "";
+        // query must start with select
+        if (!query.toLowerCase().startsWith("select")) {
+            throw new IllegalArgumentException("Query must start with select, query: '" + query + "'");
+        }
+        
+        // query must include from statement
+        String queryLowercase = query.toLowerCase();
+        int fromPos = queryLowercase.indexOf("from");
+        
+        if (fromPos == -1) {
+            throw new IllegalArgumentException("Query must include from statement, query: '" + query + "'");
+        }
+        
+        // no commas allowed between select and from
+        if (queryLowercase.substring(0, fromPos).contains(",")) {
+            throw new IllegalArgumentException("Query must not include commas between select and from, query: '" + query + "'");
+        }
+        
+        // get data from db
+        ArrayList<HashMap<String, String>> res = fetchRows(query);
+        boolean foundMultipleValues = false;
+        
+        // check that only one row is found
+        if (res.size() == 1) {
+            // check that only one column is found
+            if (res.get(0).size() == 1) {
+                // get value of column
+                for (String v : res.get(0).keySet()) {
+                    return res.get(0).get(v);
+                }
+                System.out.println();
+            } else {
+                foundMultipleValues = true;
+            }
+        } else if (res.isEmpty()) {
+            return "";
+        } else {
+            foundMultipleValues = true;
+        }
+        
+        // exit program if multiple values are found
+        if (foundMultipleValues) {
+            System.out.println("fetchSingle(): FATAL: More than one value found.");
+            System.out.println("query: " + query);
+            System.exit(0);
+        }
+        return null;
     }
     
+    /**
+     * Inserts a row into the database
+     * @author Robert Östlin
+     * @param query Query starting with "insert"
+     * @return a boolean whether the insertion was successful.
+     */
     public static boolean insert(String query) {
-        // code
-        return true;
+        if (executeStatement(query)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
+    /**
+     * Deletes a row from the database
+     * @author Robert Östlin
+     * @param query Query starting with "delete"
+     * @return a boolean whether the deletion was successful.
+     */
     public static boolean delete(String query) {
-        // code
-        return true;
+        if (executeStatement(query)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
+    /**
+     * Updates a value in the database
+     * @author Robert Östlin
+     * @param query Query starting with "update"
+     * @return a boolean whether the update was successful.
+     */    
     public static boolean update(String query) {
-        // code
-        return true;
+        if (executeStatement(query)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
+    /**
+     * Executes an sql statement
+     * @author Robert Östlin
+     * @param query Sql statement
+     * @return whether the execution was successful.
+     */
+    private static boolean executeStatement(String query) {
+        try {
+            // connect to database
+            Connection con = DriverManager.getConnection(connectionJDBC(), USERNAME, PASSWORD);
+            Statement stmt = con.createStatement();
+            stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }      
+        return false;    
+    }
+    
+    /**
+     * Fetches rows from the database
+     * @author Robert Östlin
+     * @param query Query starting with "select"
+     * @return ArrayList of HashMaps containing double Strings with fetched data.
+     */
     public static ArrayList<HashMap<String, String>> fetchRows(String query) {
         ResultSet rs;
         ArrayList<HashMap<String, String>> res = new ArrayList();
         try {
             // connect to database
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/grupp10?useSSL=false","root","aaaa");
-            Statement stmt = con.createStatement(); 
+            Connection con = DriverManager.getConnection(connectionJDBC(), USERNAME, PASSWORD);
+            Statement stmt = con.createStatement();
             
             // execute query
-            rs = stmt.executeQuery(query); 
+            rs = stmt.executeQuery(query);
             
             // store selected column names
-            ResultSetMetaData md = rs.getMetaData();
+            ResultSetMetaData rsmd = rs.getMetaData();
             
             // get number of columns
-            int numberOfColumns = md.getColumnCount();
+            int numberOfColumns = rsmd.getColumnCount();
             
-//String columnName[] = new String[numberOfColumns];
-
-//            for (int i = 1; i <= numberOfColumns; i++)
-//            {
-//               columnName[i-1] = md.getColumnLabel(i);
-//               System.out.println(columnName[i-1]);
-//            }
+            // copies rows and columns to arraylist
             while (rs.next()) {
                 HashMap<String, String> hm = new HashMap();
-                for (int i = 0; i < numberOfColumns; i++)
-                {
-    //              columnName[i] = md.getColumnLabel(i+1);
-    //              System.out.println(columnName[i]);
-                    //res.add(new HashMap<String, String>(md.getColumnLabel(i+1), "value"));
-                    //HashMap<String, String> hm = new HashMap();
-                    // TODO:
-                    // add null check
-                    hm.put(md.getColumnLabel(i+1), rs.getString(md.getColumnLabel(i+1)));
-                    //res.add(hm);
+                for (int i = 0; i < numberOfColumns; i++) {
+                    hm.put(rsmd.getColumnLabel(i+1), rs.getString(rsmd.getColumnLabel(i+1)));
                 }
-                res.add(hm);
-                
-                
-                System.out.println();
-                //System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-                //System.out.println("id: " + rs.getInt("id"));
-                //System.out.println("namn: " + rs.getString("namn"));
-                //System.out.println("mailadress: " + rs.getString("mailadress"));
-                
+                res.add(hm);               
             }
             con.close();  
-        } catch (Exception e) { // SQLExcpeption
+        } catch (Exception e) {
             System.out.println(e);
         }
         return res;
+    }
+    
+    /**
+     * Concatenates JDBC URL
+     * @author Robert Östlin
+     * @return String of concatenated JBDC URL
+     */
+    private static String connectionJDBC() {
+        return "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB + "?useSSL=false";  
     }
 }
