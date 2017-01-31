@@ -142,7 +142,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
         String text = textArea.getText();
         
         // Retrieve the current date
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
         Date date = new Date();
         String publiceringsDatum = dateFormat.format(date);
         
@@ -159,7 +159,8 @@ public class SkapaInlagg extends javax.swing.JFrame {
                     {
                         if(addPost(rubrik, text, publiceringsDatum, anvandarnamn))
                         {
-                            JOptionPane.showMessageDialog(null, "Du har skapat en inlägg");
+                            JOptionPane.showMessageDialog(null, "Du har skapat ett inlägg");
+                            new FormellaBloggen().setVisible(true);
                             dispose();
                         }
                     }
@@ -194,7 +195,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
         boolean ok = false;
         
         try{
-            String lararID = DatabaseHandler.fetchSingle("select id from larare where anvandarnamn = '" + anvandarnamn +"'");      
+            String lararID = DatabaseHandler.fetchSingle("select id from larare where anvandarnamn = '" + "asan" +"'");      
             DatabaseHandler.update("insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId) values (default, '" + rubrik + "', '" + text + "', '" + datum + "', false, 0, " + lararID + ")");
             ok = true;  
         }

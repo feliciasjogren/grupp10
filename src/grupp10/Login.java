@@ -139,18 +139,40 @@ public class Login extends javax.swing.JFrame {
                 if(checkLogin(username, password)) {
                     String isadmin = DatabaseHandler.fetchSingle(sql);
                     if(isadmin.equals("1")){
-                        System.out.println("Nu är du inloggad som admin.");
+                        addInfoToUser(username);
                         this.setVisible(false);
                         new MainGUI().setVisible(true);
                     } else {
-                        System.out.println("Nu är du inte inloggad som admin.");
+                        addInfoToUser(username);
+                        this.setVisible(false);
+                        new MainGUI().setVisible(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn.");
                 }
             }
     }//GEN-LAST:event_btnLoginActionPerformed
+    
+    private void addInfoToUser(String username)
+    {
 
+        ArrayList<HashMap<String, String>> user = DatabaseHandler.fetchRows("select * from Larare where anvandarnamn = '" + username + "'");
+        
+        for(HashMap<String, String> anvandare : user)
+        {
+            User.username = username;
+            User.id = anvandare.get("Id");
+            User.fullName = anvandare.get("Fornamn") + " " + anvandare.get("Efternamn");
+            if(anvandare.get("isAdmin").equals("1"))
+            {
+                User.isAdmin = true;
+            }
+            else{
+                User.isAdmin = false;
+            } 
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
