@@ -1,6 +1,7 @@
 package grupp10;
 
 import grupp10.formellabloggen.*;
+import grupp10.informellabloggen.InformellaBloggen;
 import grupp10.user.ChangePassword;
 
 /**
@@ -93,7 +94,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new FormellaBloggen().setVisible(true);
+        new InformellaBloggen().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

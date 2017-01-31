@@ -6,6 +6,7 @@
 package grupp10.formellabloggen;
 
 import grupp10.User;
+import grupp10.informellabloggen.InformellaBloggen;
 import grupp10.utility.DatabaseHandler;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -160,7 +161,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
                         if(addPost(rubrik, text, publiceringsDatum, anvandarnamn))
                         {
                             JOptionPane.showMessageDialog(null, "Du har skapat ett inlägg");
-                            new FormellaBloggen().setVisible(true);
+                            new InformellaBloggen().setVisible(true);
                             dispose();
                         }
                     }

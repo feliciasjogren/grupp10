@@ -168,7 +168,7 @@ public class ChangePassword extends javax.swing.JFrame {
      */
     public void changePassword() {
         
-        String inlogUsername = "asan";
+        String inlogUsername = User.username;
         String oldPassword = pfOldPassword.getText();
         String newPassword = pfNewPassword.getText();
         String repeatNewPassword = pfRepeatNewPassword.getText();

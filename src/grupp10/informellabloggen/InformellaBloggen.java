@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grupp10.formellabloggen;
+package grupp10.informellabloggen;
 
 import grupp10.utility.DatabaseHandler;
 import java.awt.BorderLayout;
@@ -19,13 +19,13 @@ import javax.swing.JTextArea;
  *
  * @author Ludvig
  */
-public class FormellaBloggen extends javax.swing.JFrame {
+public class InformellaBloggen extends javax.swing.JFrame {
 
     
     private ArrayList<HashMap<String,String>> posts;
     
     
-    public FormellaBloggen() {
+    public InformellaBloggen() {
         initComponents();
         getAllPosts();
         printaMeddelande();
@@ -452,20 +452,23 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InformellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InformellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InformellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InformellaBloggen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormellaBloggen().setVisible(true);
+                new InformellaBloggen().setVisible(true);
             }
         });
     }
