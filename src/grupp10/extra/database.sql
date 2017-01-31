@@ -34,7 +34,7 @@ create table FormellaInlagg
     Id int not null auto_increment,
     Rubrik varchar(40) not null,
     `Text` varchar(3000) not null,
-    Publiceringsdatum date not null,
+    Publiceringsdatum datetime not null,
     isDeleted boolean,
     AntalLasningar int not null,
     LarareId int,
