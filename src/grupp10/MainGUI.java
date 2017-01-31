@@ -26,7 +26,7 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnFormellaBloggen = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -37,10 +37,10 @@ public class MainGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lärarbloggen - Startsida");
 
-        jButton1.setText("Formella bloggen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFormellaBloggen.setText("Formella bloggen");
+        btnFormellaBloggen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFormellaBloggenActionPerformed(evt);
             }
         });
 
@@ -74,14 +74,14 @@ public class MainGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(355, 355, 355)
-                .addComponent(jButton1)
+                .addComponent(btnFormellaBloggen)
                 .addContainerGap(385, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(232, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnFormellaBloggen)
                 .addGap(214, 214, 214))
         );
 
@@ -93,9 +93,10 @@ public class MainGUI extends javax.swing.JFrame {
         new ChangePassword().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new InformellaBloggen().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnFormellaBloggenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormellaBloggenActionPerformed
+        new FormellaBloggen().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnFormellaBloggenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,7 +134,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnFormellaBloggen;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

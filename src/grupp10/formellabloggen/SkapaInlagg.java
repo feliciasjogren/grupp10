@@ -161,7 +161,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
                         if(addPost(rubrik, text, publiceringsDatum, anvandarnamn))
                         {
                             JOptionPane.showMessageDialog(null, "Du har skapat ett inlägg");
-                            new InformellaBloggen().setVisible(true);
+                            new FormellaBloggen().setVisible(true);
                             dispose();
                         }
                     }

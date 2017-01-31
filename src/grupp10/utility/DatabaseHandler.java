@@ -19,7 +19,7 @@ public class DatabaseHandler {
     private final static String PORT = "3306";
     private final static String DB = "grupp10";
     private final static String USERNAME = "root";
-    private final static String PASSWORD = "aaaa";
+    private final static String PASSWORD = "masterkey";
     
     /**
      * Private constructor which does not allow objects to be created.
