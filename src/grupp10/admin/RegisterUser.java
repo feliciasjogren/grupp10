@@ -40,7 +40,6 @@ public class RegisterUser extends javax.swing.JFrame {
         txtTitle = new javax.swing.JTextField();
         txtRoomNumber = new javax.swing.JTextField();
         txtPhoneNumber = new javax.swing.JTextField();
-        txtLosenord = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,6 +48,9 @@ public class RegisterUser extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        txtPhonenumber2 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,12 +84,18 @@ public class RegisterUser extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel8.setText("Lägg till en ny användare");
 
+        jLabel9.setText("Telefonnummer 2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
+                .addContainerGap(187, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
@@ -95,61 +103,65 @@ public class RegisterUser extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9))
                 .addGap(161, 161, 161)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtLastname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRoomNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                    .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                    .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtPhonenumber2)
+                        .addComponent(txtLastname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRoomNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                        .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                        .addComponent(btAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
-                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(89, 89, 89)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
+                                    .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtRoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7))
-                .addGap(87, 87, 87)
+                        .addComponent(txtPhonenumber2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9))
+                .addGap(68, 68, 68)
                 .addComponent(btAddUser)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,21 +170,22 @@ public class RegisterUser extends javax.swing.JFrame {
 // Kontrollerar de olika fälten så att innehållet är korrekt format.
 //
     private void btAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddUserActionPerformed
-        if(Validation.textfieldNotEmpty(txtLosenord, "Fältet för lösenord är tomt, fyll i ett giltigt lösenord.")
+        if(Validation.textfieldNotEmpty(txtPassword, "Fältet för lösenord är tomt, fyll i ett giltigt lösenord.")
                 && Validation.textfieldNotEmpty(txtFirstname, "Textfältet för Förnamn är tomt, fyll i ett giltigt förnamn.")
                 && Validation.textfieldNotEmpty(txtLastname, "Textfältet för Efternamn är tomt, fyll i ett giltigt efternamn.")
                 && Validation.textfieldNotEmpty(txtEmail, "Textfältet för Email är tomt, fyll i en giltig email.")
                 && Validation.textfieldNotEmpty(txtTitle, "Textfältet för titeln är tomt, skriv in ")
                 && Validation.textfieldNotEmpty(txtRoomNumber, "Rumsnmmerfältet är tomt, lägg till ett giltigt rumsnummer.")
                 && Validation.textfieldNotEmpty(txtPhoneNumber, "Fältet för telefonnummer är tomt, fyll i ett giltigt telefonnummer.")) {
-            String password = txtLosenord.getText();
+            String password = txtPassword.getText();
             String firstname = txtFirstname.getText();
             String lastname = txtLastname.getText();
             String email = txtEmail.getText();
             String title = txtTitle.getText();
             String room = txtRoomNumber.getText();
             String phonenumber = txtPhoneNumber.getText();
-                if(Validation.hasOnlyLetters(firstname)&& Validation.hasOnlyLetters(lastname)){
+            String phonenumber2 = txtPhonenumber2.getText();
+                if(Validation.hasOnlyLetters(firstname)&& Validation.hasOnlyLetters(lastname) && firstname.length() >1 && lastname.length() > 1){
                     if(Validation.hasOnlyLetters(title)){
                         if(Validation.isNumerical(phonenumber)){
                             if(password.length() > 5 && password.length() < 40){
@@ -185,13 +198,31 @@ public class RegisterUser extends javax.swing.JFrame {
                                 String user = username + userlast;
 //                                String sql2 = "select anvandarnamn from larare where anvandarnamn = '"+ user +"';";
 //                                String checkUser = DatabaseHandler.fetchSingle(sql2);
-//                                if(checkUser.isEmpty()){
-                                String sql1 = "insert into larare values(default, '"+ user + "', '"+ password +"', '" + firstname + "', '" + lastname + "', '" + email + "', '" + title + "', '" + room + "', "+ phonenumber +", 0, 0);";
+//                                if(checkUser.isEmpty())
+                                String sql1 = "insert into larare values(default, '"+ user + "', '"+ password +"', '" + firstname + "', '" + lastname + "', '" + email + "', '" + title + "', '" + room + "', 0, 0);";
                                 DatabaseHandler.insert(sql1);
-                                JOptionPane.showMessageDialog(null, "Woho, nytt användarnamn är "+user);
+                                String sql3 = "Select id from larare where anvandarnamn ='"+user+"';";
+                                String id = DatabaseHandler.fetchSingle(sql3);
+                                String sql4 = "Insert into telefonnummer values("+id+", '"+phonenumber+"');";
+                                DatabaseHandler.insert(sql4);
+                                JOptionPane.showMessageDialog(null, "Woho, användaren är tillagd. Det nya användarnamnet är "+user+".");
+                                txtPassword.setText("");
+                                txtFirstname.setText("");
+                                txtLastname.setText("");
+                                txtEmail.setText("");
+                                txtTitle.setText("");
+                                txtRoomNumber.setText("");
+                                txtPhoneNumber.setText("");
+                                if(!phonenumber2.isEmpty()){
+                                    String sql5 = "Insert into telefonnummer values("+id+", '"+phonenumber2+"')";
+                                    DatabaseHandler.insert(sql5);
+                                    txtPhonenumber2.setText("");
+                                }
+                                else{
+                                System.out.println("Inget telefonnummer.");
+                                }
                                 // TODO:
                                 // Kontrollera så att användarnamnet inte finns. Om det finns så läggs en siffra på.
-                            }
                             }
                             else{
                                 JOptionPane.showMessageDialog(null, "Skriv in en giltig email.");
@@ -199,8 +230,8 @@ public class RegisterUser extends javax.swing.JFrame {
                             }
                             else{
                                 JOptionPane.showMessageDialog(null, "Fyll i ett giltigt lösenord, lösenordet måste innehålla minst 6 tecken och max 39 tecken och minst en siffra.");
-                                
-                            }}
+                            }
+                        }
                     else{
                         JOptionPane.showMessageDialog(null, "Skriv in ett giltigt telefonnummer.");
                     }
@@ -212,6 +243,10 @@ public class RegisterUser extends javax.swing.JFrame {
                 else{
             JOptionPane.showMessageDialog(null, "Kontrollera namnen. Kan bara innehålla A-Ö.");
                 }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Obs! Lämna inga textfält tomma.");
+        }
     }//GEN-LAST:event_btAddUserActionPerformed
 
     private void txtRoomNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRoomNumberActionPerformed
@@ -263,11 +298,13 @@ public class RegisterUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstname;
     private javax.swing.JTextField txtLastname;
-    private javax.swing.JTextField txtLosenord;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtPhonenumber2;
     private javax.swing.JTextField txtRoomNumber;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
