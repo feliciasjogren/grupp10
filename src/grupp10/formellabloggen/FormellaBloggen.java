@@ -28,40 +28,50 @@ public class FormellaBloggen extends javax.swing.JFrame {
     public FormellaBloggen() {
         initComponents();
         getAllPosts();
-        printaMeddelande();
+        printPosts();
     }
     
+    /**
+     * Method to retrieve all the posts from the database.
+     */
     private void getAllPosts()
     {
         posts = DatabaseHandler.fetchRows("select * from FormellaInlagg where isDeleted != '1' group by Publiceringsdatum desc ");        
     }  
     
-
-    private void printaMeddelande()
+    /**
+     * Method to print all the newest posts, up to ten. 
+     */  
+    private void printPosts()
         {
             
             int i = 0;
             
+            // Retrieve the info from the posts and prints it out
             while(i < posts.size() && i < 10)
             {
             String ID = posts.get(i).get("Id");
             String rubrik = posts.get(i).get("Rubrik");
             String text = posts.get(i).get("Text");
             String avsandare = posts.get(i).get("LarareId");
-            String Date = posts.get(i).get("Publiceringsdatum");
+            String date = posts.get(i).get("Publiceringsdatum");
             
+            // Retrieve the info about a teacher
             ArrayList<HashMap<String, String>> larare = DatabaseHandler.fetchRows("select * from larare where Id = " + avsandare);
             
             String titel = "";
             
+            // Creating a String with the info about the retrieved teacher
             for(HashMap<String, String> infoOmLarare : larare)
             {
-               titel = infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn");           
+               titel = infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title          
             }
             
-            String message = text + '\n' + '\n' + Date + '\n';
-        
-                switch(i)
+            String message = text;
+            
+                
+                // Adding text to the Areatextfields.
+                switch(i) 
                 {
                 case 0: 
                     ta1.setText(message);
@@ -109,10 +119,15 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 }     
                 i++;
             }
-            hittaTomma();
+            setAllVisible();
+            findEmpty(); 
         }    
     
-    private void hittaTomma()
+    /**
+     * A method to hide all the unused areatextfields.
+     * If an areatextfield is empty, it is setVisible(false).
+     */
+    private void findEmpty()
     {
         if(ta1.getText().isEmpty())
         {
@@ -167,6 +182,9 @@ public class FormellaBloggen extends javax.swing.JFrame {
         pack();
     }
     
+    /**
+     * A method to update/refresh the labels and areatextfield to been shown. 
+     */
     private void setAllVisible()
     {
             jScrollPane1.setVisible(true);
@@ -201,12 +219,6 @@ public class FormellaBloggen extends javax.swing.JFrame {
     }
     
     
-    private String createPostMessage(String author, String title, String text, String date, String category)
-    {
-        String post = title + '\n' + '\n' + text + '\n' + '\n' + date + " " + category;
-            
-        return post;
-    }
     
     
     
@@ -253,6 +265,7 @@ public class FormellaBloggen extends javax.swing.JFrame {
         postLabel9 = new javax.swing.JLabel();
         postLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        skapaInlaggButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -408,7 +421,14 @@ public class FormellaBloggen extends javax.swing.JFrame {
         jScrollPane11.setViewportView(jPanel1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
-        jLabel1.setText("FormellaBloggen");
+        jLabel1.setText("Formella Bloggen");
+
+        skapaInlaggButton.setText("Skapa inlägg");
+        skapaInlaggButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                skapaInlaggButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -419,7 +439,9 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(81, 331, Short.MAX_VALUE)
+                .addGap(103, 103, 103)
+                .addComponent(skapaInlaggButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -428,12 +450,21 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane11))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(skapaInlaggButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void skapaInlaggButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaInlaggButtonActionPerformed
+        new SkapaInlagg().setVisible(true);
+    }//GEN-LAST:event_skapaInlaggButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,6 +525,7 @@ public class FormellaBloggen extends javax.swing.JFrame {
     private javax.swing.JLabel postLabel7;
     private javax.swing.JLabel postLabel8;
     private javax.swing.JLabel postLabel9;
+    private javax.swing.JButton skapaInlaggButton;
     private javax.swing.JTextArea ta1;
     private javax.swing.JTextArea ta10;
     private javax.swing.JTextArea ta2;
