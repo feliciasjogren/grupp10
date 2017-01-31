@@ -22,6 +22,10 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
+        // lazy
+        txtfAnvandarnamn.setText("asan");
+        pwfLosenord.setText("anders123");
     }
 
     /**
@@ -36,6 +40,8 @@ public class Login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JToggleButton();
         txtfAnvandarnamn = new javax.swing.JTextField();
         pwfLosenord = new javax.swing.JPasswordField();
+        lblUsername = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,34 +52,48 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        lblUsername.setText("Användarnamn");
+
+        jLabel1.setText("Lösenord");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(txtfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(btnLogin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(154, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogin)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsername)
+                            .addComponent(jLabel1))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pwfLosenord, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(txtfAnvandarnamn))))
+                .addGap(130, 130, 130))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUsername))
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(pwfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addComponent(btnLogin)
-                .addGap(109, 109, 109))
+                .addGap(135, 135, 135))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     /*private boolean checkAdmin(String kontroll)
     {
@@ -112,20 +132,21 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
         String username = txtfAnvandarnamn.getText();
         String password = pwfLosenord.getText();
         String sql = "Select isAdmin from Larare where Anvandarnamn = '"+username+"'";
-            if(Validation.textfieldNotEmpty(txtfAnvandarnamn, "Användarnamnfältet är tomt") && Validation.textfieldNotEmpty(pwfLosenord, "Lösenordfältet är tomt."))
-            {
-                if(checkLogin(username, password)){
+            if(Validation.textfieldNotEmpty(txtfAnvandarnamn, "Användarnamnfältet är tomt") && Validation.textfieldNotEmpty(pwfLosenord, "Lösenordfältet är tomt.")) {
+                if(checkLogin(username, password)) {
                     String isadmin = DatabaseHandler.fetchSingle(sql);
                     if(isadmin.equals("1")){
                         System.out.println("Nu är du inloggad som admin.");
-                    }
-                    else{
+                        this.setVisible(false);
+                        new MainGUI().setVisible(true);
+                    } else {
                         System.out.println("Nu är du inte inloggad som admin.");
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn.");
                 }
             }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -167,6 +188,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnLogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JPasswordField pwfLosenord;
     private javax.swing.JTextField txtfAnvandarnamn;
     // End of variables declaration//GEN-END:variables

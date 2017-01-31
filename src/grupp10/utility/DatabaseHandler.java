@@ -35,6 +35,8 @@ public class DatabaseHandler {
      * @return the string of the fetched value
      */
     public static String fetchSingle(String query) {
+        printQuery(query);
+        
         // query must start with select
         if (!query.toLowerCase().startsWith("select")) {
             throw new IllegalArgumentException("Query must start with select, query: '" + query + "'");
@@ -133,6 +135,8 @@ public class DatabaseHandler {
      * @return whether the execution was successful.
      */
     private static boolean executeStatement(String query) {
+        printQuery(query);
+        
         try {
             // connect to database
             Connection con = DriverManager.getConnection(connectionJDBC(), USERNAME, PASSWORD);
@@ -153,6 +157,8 @@ public class DatabaseHandler {
      * @return ArrayList of HashMaps containing double Strings with fetched data.
      */
     public static ArrayList<HashMap<String, String>> fetchRows(String query) {
+        printQuery(query);
+        
         ResultSet rs;
         ArrayList<HashMap<String, String>> res = new ArrayList();
         try {
@@ -191,5 +197,10 @@ public class DatabaseHandler {
      */
     private static String connectionJDBC() {
         return "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB + "?useSSL=false";  
+    }
+    
+    private static void printQuery(String query) {
+        // print out query
+        System.out.println("query: '" + query + "'");
     }
 }

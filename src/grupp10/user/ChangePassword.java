@@ -102,6 +102,7 @@ public class ChangePassword extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -145,7 +146,7 @@ public class ChangePassword extends javax.swing.JFrame {
     }
     
     /**
-     * Method that checks if the new input password is longar than six letters.
+     * Method that checks if the new input password is longer than six letters.
      * @param password: New input password.
      * @return true if password is valid, false if not.
      */
@@ -153,7 +154,7 @@ public class ChangePassword extends javax.swing.JFrame {
         
         boolean valid = false;
         
-        if(password.length() >= 6 && password.length() < 40) {
+        if(password.length() > 6 && password.length() < 40) {
             valid = true;
         } else {
             JOptionPane.showMessageDialog(null, "Lösenordet måste vara längre än sex bokstäver.", "Fel!", JOptionPane.INFORMATION_MESSAGE);

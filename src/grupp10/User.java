@@ -13,5 +13,5 @@ public class User {
     public static String id = "";
     public static String fullName = "";
     public static boolean isAdmin = false;
-    public static String username = ""; 
+    public static String username = "";
 }

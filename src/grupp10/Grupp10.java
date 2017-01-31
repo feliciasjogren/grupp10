@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package grupp10;
 
 import grupp10.utility.DatabaseHandler;
@@ -10,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
- * @author rober
+ * Main class of project
+ * @author Robert Östlin
  */
 public class Grupp10 {
 
@@ -20,14 +15,21 @@ public class Grupp10 {
      */
     public static void main(String[] args) {
         // example
-        ArrayList<HashMap<String, String>> teachers = DatabaseHandler.fetchRows("select Id, Forename, Surname, Email from teacher");
+        ArrayList<HashMap<String, String>> teachers = DatabaseHandler.fetchRows("SELECT Id, Fornamn, Efternamn, Email FROM Larare");
         
         for (HashMap<String, String> row : teachers) {
             System.out.println("Id: " + row.get("Id"));
-            System.out.println("Forename: " + row.get("Forename"));
-            System.out.println("Surname: " + row.get("Surname"));
+            System.out.println("Förnamn: " + row.get("Fornamn"));
+            System.out.println("Efternamn: " + row.get("Efternamn"));
             System.out.println("Email: " + row.get("Email"));
-            System.out.println();
-        }       
+        }
+        
+        // returns "" if no value is found
+        String fornamn = DatabaseHandler.fetchSingle("SELECT Fornamn FROM Larare WHERE Id = 1");
+        
+        // String fornamn = DatabaseHandler.fetchSingle("SELECT Fornamn FROM Larare WHERE Fornamn LIKE '%A%'");
+        System.out.println("Förnamn: " + fornamn);
+        
+        new Login().setVisible(true);
     }
 }
