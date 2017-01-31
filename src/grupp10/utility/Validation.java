@@ -1,6 +1,7 @@
 package grupp10.utility;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -17,6 +18,16 @@ public class Validation {
         if (tf.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, message);
             tf.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    static public boolean passwordfieldNotEmpty(JPasswordField pf, String message) {
+        
+        if (pf.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(null, message);
+            pf.requestFocus();
             return false;
         }
         return true;
