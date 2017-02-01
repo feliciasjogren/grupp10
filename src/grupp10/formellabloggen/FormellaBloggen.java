@@ -36,9 +36,9 @@ public class FormellaBloggen extends javax.swing.JFrame {
      */
     private void getAllPosts()
     {
-        posts = DatabaseHandler.fetchRows("select * from FormellaInlagg where isDeleted != '1' group by Publiceringsdatum desc ");        
+        posts = DatabaseHandler.fetchRows("select * from FormellaInlagg where isDeleted != '1' order by Publiceringsdatum desc ");        
     }  
-    
+          
     /**
      * Method to print all the newest posts, up to ten. 
      */  
@@ -64,7 +64,7 @@ public class FormellaBloggen extends javax.swing.JFrame {
             // Creating a String with the info about the retrieved teacher
             for(HashMap<String, String> infoOmLarare : larare)
             {
-               titel = infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title          
+               titel = ID + ".   " + infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title          
             }
             
             String message = text;
@@ -133,51 +133,61 @@ public class FormellaBloggen extends javax.swing.JFrame {
         {
             jScrollPane1.setVisible(false);
             postLabel1.setVisible(false);
+            jbRedigera1.setVisible(true);
         }
         if(ta2.getText().isEmpty())
         {
             jScrollPane2.setVisible(false);
             postLabel2.setVisible(false);
+            jbRedigera2.setVisible(true);
         }    
         if(ta3.getText().isEmpty())
         {
             jScrollPane3.setVisible(false);
             postLabel3.setVisible(false);
+            jbRedigera3.setVisible(true);
         }    
         if(ta4.getText().isEmpty())
         {
             jScrollPane4.setVisible(false);
             postLabel4.setVisible(false);
+            jbRedigera4.setVisible(true);
         }
         if(ta5.getText().isEmpty())
         {
             jScrollPane5.setVisible(false);
             postLabel5.setVisible(false);
+            jbRedigera5.setVisible(true);
         }
         if(ta6.getText().isEmpty())
         {
             jScrollPane6.setVisible(false);
             postLabel6.setVisible(false);
+            jbRedigera6.setVisible(true);
         }
         if(ta7.getText().isEmpty())
         {
             jScrollPane7.setVisible(false);
             postLabel7.setVisible(false);
+            jbRedigera7.setVisible(true);
         }
         if(ta8.getText().isEmpty())
         {
             jScrollPane8.setVisible(false);
             postLabel8.setVisible(false);
+            jbRedigera8.setVisible(true);
         }
         if(ta9.getText().isEmpty())
         {
             jScrollPane9.setVisible(false);
             postLabel9.setVisible(false);
+            jbRedigera9.setVisible(true);
         }
         if(ta10.getText().isEmpty())
         {
             jScrollPane10.setVisible(false);
             postLabel10.setVisible(false);
+            jbRedigera10.setVisible(true);
         }
         pack();
     }
@@ -188,34 +198,44 @@ public class FormellaBloggen extends javax.swing.JFrame {
     private void setAllVisible()
     {
             jScrollPane1.setVisible(true);
-            postLabel1.setVisible(true);    
+            postLabel1.setVisible(true);
+            jbRedigera1.setVisible(true);
             
             jScrollPane2.setVisible(true);
             postLabel2.setVisible(true);
+            jbRedigera2.setVisible(true);
             
             jScrollPane3.setVisible(true);
             postLabel3.setVisible(true);
+            jbRedigera3.setVisible(true);
             
             jScrollPane4.setVisible(true);
-            postLabel4.setVisible(true);   
+            postLabel4.setVisible(true);
+            jbRedigera4.setVisible(true);
 
             jScrollPane5.setVisible(true);
-            postLabel5.setVisible(true);   
+            postLabel5.setVisible(true);
+            jbRedigera5.setVisible(true);
 
             jScrollPane6.setVisible(true);
-            postLabel6.setVisible(true);   
+            postLabel6.setVisible(true); 
+            jbRedigera6.setVisible(true);
 
             jScrollPane7.setVisible(true);
-            postLabel7.setVisible(true);   
+            postLabel7.setVisible(true);  
+            jbRedigera7.setVisible(true);
 
             jScrollPane8.setVisible(true);
-            postLabel8.setVisible(true);   
+            postLabel8.setVisible(true);  
+            jbRedigera8.setVisible(true);
 
             jScrollPane9.setVisible(true);
-            postLabel9.setVisible(true);   
+            postLabel9.setVisible(true);  
+            jbRedigera9.setVisible(true);
 
             jScrollPane10.setVisible(true);
-            postLabel10.setVisible(true);               
+            postLabel10.setVisible(true);   
+            jbRedigera10.setVisible(true);            
     }
     
     
@@ -264,6 +284,16 @@ public class FormellaBloggen extends javax.swing.JFrame {
         postLabel8 = new javax.swing.JLabel();
         postLabel9 = new javax.swing.JLabel();
         postLabel10 = new javax.swing.JLabel();
+        jbRedigera2 = new javax.swing.JButton();
+        jbRedigera3 = new javax.swing.JButton();
+        jbRedigera1 = new javax.swing.JButton();
+        jbRedigera4 = new javax.swing.JButton();
+        jbRedigera5 = new javax.swing.JButton();
+        jbRedigera6 = new javax.swing.JButton();
+        jbRedigera7 = new javax.swing.JButton();
+        jbRedigera8 = new javax.swing.JButton();
+        jbRedigera9 = new javax.swing.JButton();
+        jbRedigera10 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         skapaInlaggButton = new javax.swing.JButton();
 
@@ -342,34 +372,123 @@ public class FormellaBloggen extends javax.swing.JFrame {
 
         postLabel10.setText("jLabel2");
 
+        jbRedigera2.setText("Redigera");
+        jbRedigera2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera2ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera3.setText("Redigera");
+        jbRedigera3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera3ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera1.setText("Redigera");
+        jbRedigera1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera1ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera4.setText("Redigera");
+        jbRedigera4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera4ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera5.setText("Redigera");
+        jbRedigera5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera5ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera6.setText("Redigera");
+        jbRedigera6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera6ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera7.setText("Redigera");
+        jbRedigera7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera7ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera8.setText("Redigera");
+        jbRedigera8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera8ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera9.setText("Redigera");
+        jbRedigera9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera9ActionPerformed(evt);
+            }
+        });
+
+        jbRedigera10.setText("Redigera");
+        jbRedigera10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRedigera10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(postLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(postLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(postLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(597, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbRedigera10)
+                    .addComponent(jbRedigera9)
+                    .addComponent(jbRedigera8)
+                    .addComponent(jbRedigera7)
+                    .addComponent(jbRedigera3)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(postLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(postLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbRedigera6))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(postLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbRedigera5))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(postLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbRedigera4))
+                        .addComponent(postLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(postLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(postLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbRedigera1))
+                        .addComponent(jScrollPane5)
+                        .addComponent(jScrollPane10)
+                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane6)
+                        .addComponent(jScrollPane7)
+                        .addComponent(jScrollPane8)
+                        .addComponent(jScrollPane9)
+                        .addComponent(postLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbRedigera2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addContainerGap(612, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,43 +497,72 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 .addComponent(postLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(postLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(postLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbRedigera1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(3, 3, 3)
+                .addComponent(jbRedigera2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(postLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(2, 2, 2)
+                .addComponent(jbRedigera3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(postLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(postLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(postLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbRedigera4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(postLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(postLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbRedigera5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbRedigera6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(3, 3, 3)
+                .addComponent(jbRedigera7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(postLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(4, 4, 4)
+                .addComponent(jbRedigera8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(postLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addComponent(jbRedigera9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbRedigera10)
+                .addGap(10, 10, 10))
         );
 
         jScrollPane11.setViewportView(jPanel1);
@@ -463,7 +611,59 @@ public class FormellaBloggen extends javax.swing.JFrame {
 
     private void skapaInlaggButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaInlaggButtonActionPerformed
         new SkapaInlagg().setVisible(true);
+        dispose();
     }//GEN-LAST:event_skapaInlaggButtonActionPerformed
+
+    private void jbRedigera3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera3ActionPerformed
+        String id = postLabel3.getText().substring(0, postLabel3.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera3ActionPerformed
+
+    private void jbRedigera1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera1ActionPerformed
+        String id = postLabel1.getText().substring(0, postLabel1.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+        
+    }//GEN-LAST:event_jbRedigera1ActionPerformed
+
+    private void jbRedigera2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera2ActionPerformed
+        String id = postLabel2.getText().substring(0, postLabel2.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera2ActionPerformed
+
+    private void jbRedigera4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera4ActionPerformed
+        String id = postLabel4.getText().substring(0, postLabel4.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera4ActionPerformed
+
+    private void jbRedigera5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera5ActionPerformed
+        String id = postLabel5.getText().substring(0, postLabel5.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera5ActionPerformed
+
+    private void jbRedigera6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera6ActionPerformed
+        String id = postLabel6.getText().substring(0, postLabel6.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera6ActionPerformed
+
+    private void jbRedigera7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera7ActionPerformed
+        String id = postLabel7.getText().substring(0, postLabel7.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera7ActionPerformed
+
+    private void jbRedigera8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera8ActionPerformed
+        String id = postLabel8.getText().substring(0, postLabel8.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera8ActionPerformed
+
+    private void jbRedigera9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera9ActionPerformed
+        String id = postLabel9.getText().substring(0, postLabel9.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera9ActionPerformed
+
+    private void jbRedigera10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera10ActionPerformed
+        String id = postLabel10.getText().substring(0, postLabel10.getText().indexOf("."));
+        new RedigeraInlagg(id).setVisible(true);
+    }//GEN-LAST:event_jbRedigera10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,6 +721,16 @@ public class FormellaBloggen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JButton jbRedigera1;
+    private javax.swing.JButton jbRedigera10;
+    private javax.swing.JButton jbRedigera2;
+    private javax.swing.JButton jbRedigera3;
+    private javax.swing.JButton jbRedigera4;
+    private javax.swing.JButton jbRedigera5;
+    private javax.swing.JButton jbRedigera6;
+    private javax.swing.JButton jbRedigera7;
+    private javax.swing.JButton jbRedigera8;
+    private javax.swing.JButton jbRedigera9;
     private javax.swing.JLabel postLabel1;
     private javax.swing.JLabel postLabel10;
     private javax.swing.JLabel postLabel2;
