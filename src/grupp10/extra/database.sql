@@ -48,7 +48,9 @@ create table FormellaInlaggLastAv
 (
     FormellaInlaggId int not null,
     LarareId int not null,
-    unique (FormellaInlaggId, LarareId)
+    unique (FormellaInlaggId, LarareId),
+    foreign key (FormellaInlaggId) references FormellaInlagg (Id),
+    foreign key (LarareId) references Larare (Id)
 );
 
 create table FormellaInlagg_Huvudkategori
@@ -83,10 +85,12 @@ create table Inbjudning
 create table Inbjudning_Tidpunkt
 (
     Id int not null auto_increment,
+    InbjudningId int not null,
     Datum date not null,
     Timslag char(2) not null,
     Minutslag char(2) not null,
-    primary key (Id)
+    primary key (Id),
+    foreign key (InbjudningId) references Inbjudning (Id)
 );
 
 create table Inbjudning_Deltagare
