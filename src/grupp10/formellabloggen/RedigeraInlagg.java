@@ -38,7 +38,7 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         jbTillbakaKnapp = new javax.swing.JButton();
         errorLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelRedigeraInlagg.setText("Redigera inlägg");
 
@@ -120,7 +120,7 @@ public class RedigeraInlagg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbRedigeringsKnapp)
                     .addComponent(jbTillbakaKnapp))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,7 +138,7 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         boolean ok = false;
         
         try{
-        DatabaseHandler.update("update Formellainlagg set Rubrik = '" + nyRubrik + "', Text = '" + nyText + "' where Id = " + 1);
+        DatabaseHandler.update("update Formellainlagg set Rubrik = '" + nyRubrik + "', Text = '" + nyText + "' where Id = " + ID);
         ok = true;
         }
         catch(Exception ex)
@@ -146,16 +146,16 @@ public class RedigeraInlagg extends javax.swing.JFrame {
             ok = false;
             System.out.println("Error");
         }
-        if(nyRubrik.length() > 1)
+        if(nyRubrik.length() > 1 && ok)
         {
             if(nyRubrik.length() < 40)
             {
                 if(nyText.length() < 1000)
                 {
                     if(nyText.length() > 2)
-                    {
-               ok = true;              
-               JOptionPane.showMessageDialog(null, "Du har ändrat ett inlägg");
+                    {             
+                    JOptionPane.showMessageDialog(null, "Du har ändrat ett inlägg");
+                    dispose();
                     }
                     else{
                         errorLabel1.setText("Inlägget måste bestå av minst två tecken");

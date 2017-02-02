@@ -5,15 +5,14 @@
  */
 package grupp10.formellabloggen;
 
+import grupp10.User;
 import grupp10.utility.DatabaseHandler;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.beans.PropertyEditorManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+
 
 /**
  *
@@ -29,6 +28,7 @@ public class FormellaBloggen extends javax.swing.JFrame {
         initComponents();
         getAllPosts();
         printPosts();
+        findPostForUser();
     }
     
     /**
@@ -55,6 +55,8 @@ public class FormellaBloggen extends javax.swing.JFrame {
             String text = posts.get(i).get("Text");
             String avsandare = posts.get(i).get("LarareId");
             String date = posts.get(i).get("Publiceringsdatum");
+            date = date.substring(0, date.length()-5);
+     
             
             // Retrieve the info about a teacher
             ArrayList<HashMap<String, String>> larare = DatabaseHandler.fetchRows("select * from larare where Id = " + avsandare);
@@ -133,61 +135,61 @@ public class FormellaBloggen extends javax.swing.JFrame {
         {
             jScrollPane1.setVisible(false);
             postLabel1.setVisible(false);
-            jbRedigera1.setVisible(true);
+            jbRedigera1.setVisible(false);
         }
         if(ta2.getText().isEmpty())
         {
             jScrollPane2.setVisible(false);
             postLabel2.setVisible(false);
-            jbRedigera2.setVisible(true);
+            jbRedigera2.setVisible(false);
         }    
         if(ta3.getText().isEmpty())
         {
             jScrollPane3.setVisible(false);
             postLabel3.setVisible(false);
-            jbRedigera3.setVisible(true);
+            jbRedigera3.setVisible(false);
         }    
         if(ta4.getText().isEmpty())
         {
             jScrollPane4.setVisible(false);
             postLabel4.setVisible(false);
-            jbRedigera4.setVisible(true);
+            jbRedigera4.setVisible(false);
         }
         if(ta5.getText().isEmpty())
         {
             jScrollPane5.setVisible(false);
             postLabel5.setVisible(false);
-            jbRedigera5.setVisible(true);
+            jbRedigera5.setVisible(false);
         }
         if(ta6.getText().isEmpty())
         {
             jScrollPane6.setVisible(false);
             postLabel6.setVisible(false);
-            jbRedigera6.setVisible(true);
+            jbRedigera6.setVisible(false);
         }
         if(ta7.getText().isEmpty())
         {
             jScrollPane7.setVisible(false);
             postLabel7.setVisible(false);
-            jbRedigera7.setVisible(true);
+            jbRedigera7.setVisible(false);
         }
         if(ta8.getText().isEmpty())
         {
             jScrollPane8.setVisible(false);
             postLabel8.setVisible(false);
-            jbRedigera8.setVisible(true);
+            jbRedigera8.setVisible(false);
         }
         if(ta9.getText().isEmpty())
         {
             jScrollPane9.setVisible(false);
             postLabel9.setVisible(false);
-            jbRedigera9.setVisible(true);
+            jbRedigera9.setVisible(false);
         }
         if(ta10.getText().isEmpty())
         {
             jScrollPane10.setVisible(false);
             postLabel10.setVisible(false);
-            jbRedigera10.setVisible(true);
+            jbRedigera10.setVisible(false);
         }
         pack();
     }
@@ -238,11 +240,320 @@ public class FormellaBloggen extends javax.swing.JFrame {
             jbRedigera10.setVisible(true);            
     }
     
+    /**
+     * Loop to go through every AreaTextfield
+     */
+    private void findPostForUser()
+    {       
+        ArrayList<HashMap<String,String>> inlagg = DatabaseHandler.fetchRows("select * from FormellaInlagg where isDeleted != '1' order by Publiceringsdatum desc");
+        
+        if(inlagg!=null)
+        {    
+            for(int i = 0; i < inlagg.size() || i < 10; i++)
+            {
+                findNotEditable(User.username);
+            }   
+        }
+        else{
+            System.out.println("inga hittades");
+        }
+    }
     
+    /**
+     * Hiding the edit button for users who dont have access to them
+     * @param id 
+     */
+    private void findNotEditable(String id)
+    {
+   
+    try{  
+        if(!ta1.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel1.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera1.setVisible(false);
+            }
+        }
+        if(!ta2.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel2.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera2.setVisible(false);
+            }
+        }   
+        if(!ta3.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel3.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera3.setVisible(false);
+            }
+        }   
+        if(!ta4.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel4.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera4.setVisible(false);
+            }
+        }
+        if(!ta5.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel5.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera5.setVisible(false);
+            }
+        }
+        if(!ta6.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel6.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera6.setVisible(false);
+            }
+        }
+        if(!ta7.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel7.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera7.setVisible(false);
+            }
+        }
+        if(!ta8.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel8.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera8.setVisible(false);
+            }
+        }
+        if(!ta9.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel9.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera9.setVisible(false);
+            }
+        }
+        if(!ta10.getText().isEmpty())          
+        {        
+            String[] lararID = postLabel10.getText().split(" ");
+            if(!lararID[6].substring(0, lararID[6].length() -1).equalsIgnoreCase(id)){
+            jbRedigera10.setVisible(false);
+            }
+        }
+      }
+        catch(NullPointerException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
     
+    private void finding(boolean founded, int index)
+    {
+        switch(index)
+        {
+            case 0:
+                if(!founded){
+                    System.out.println("HEJ");
+                    jbRedigera1.setVisible(false);
+                }
+                break;
+            case 1:
+                if(!founded){
+                    jbRedigera2.setVisible(false);
+                }
+                break;
+                
+            case 2:
+                if(!founded){
+                    jbRedigera3.setVisible(false);
+                }
+                break;
+            case 3:
+                if(!founded){
+                    jbRedigera4.setVisible(false);
+                }
+                break;
+            case 4:
+                if(!founded){
+                    jbRedigera5.setVisible(false);
+                }
+                break;
+            case 5:
+                if(!founded){
+                    jbRedigera6.setVisible(false);
+                }
+                break;
+            case 6:
+                if(!founded){
+                    jbRedigera7.setVisible(false);
+                }
+                break;
+            case 7:
+                if(!founded){
+                    jbRedigera8.setVisible(false);
+                }
+                break;
+            case 8:
+                if(!founded){
+                    jbRedigera1.setVisible(false);
+                }
+                break;
+            case 9:
+                if(!founded){
+                    jbRedigera10.setVisible(false);
+                }
+                break;          
+        } 
+    }
     
+    /**
+     * Fix a properly String that matches the SQL query
+     * @param date 
+     * @return 
+     */
+    private String fixStartDate(String date)
+    {
+        String[] datum = date.split(" ");
+        
+        String dag = datum[2];
+        String manad = "";
+        String ar = datum[5];
+        
+        switch(datum[1])
+        {
+            case"Jan":
+                manad = "01";
+                break;
+            case"Feb":
+                manad = "02";
+                break;
+            case"Mar":
+                manad = "03";
+                break;
+            case"Apr":
+                manad = "04";
+                break;
+            case"May":
+                manad = "05";
+                break;
+            case"Jun":
+                manad = "06";
+                break;
+            case"Jul":
+                manad = "07";
+                break;
+            case"Aug":
+                manad = "08";
+                break;
+            case"Sep":
+                manad = "09";
+                break;
+            case"Oct":
+                manad = "10";
+                break;
+            case"Nov":
+                manad = "11";
+                break;
+            case"Dec":
+                manad = "12";
+                break;
+            default:
+                manad = "00";             
+        }
+        
+        return ar + "." + manad + "." + dag + " 00:00:00";   
+    }    
     
+    /**
+     * Fix a properly String that matches the SQL query
+     * @param date
+     * @return 
+     */
+    private String fixEndDate(String date)
+    {
+        String[] datum = date.split(" ");
+        
+        String dag = datum[2];
+        String manad = "";
+        String ar = datum[5];
+        
+        switch(datum[1])
+        {
+            case"Jan":
+                manad = "01";
+                break;
+            case"Feb":
+                manad = "02";
+                break;
+            case"Mar":
+                manad = "03";
+                break;
+            case"Apr":
+                manad = "04";
+                break;
+            case"May":
+                manad = "05";
+                break;
+            case"Jun":
+                manad = "06";
+                break;
+            case"Jul":
+                manad = "07";
+                break;
+            case"Aug":
+                manad = "08";
+                break;
+            case"Sep":
+                manad = "09";
+                break;
+            case"Oct":
+                manad = "10";
+                break;
+            case"Nov":
+                manad = "11";
+                break;
+            case"Dec":
+                manad = "12";
+                break;
+            default:
+                manad = "00";             
+        }
+        
+        return ar + "." + manad + "." + dag + " 23:59:59";     
+    }
     
+    /**
+     * Set all labels and AreaTextfields to ""
+     */
+    private void setAllTextToZero()
+    {
+            ta1.setText("");
+            postLabel1.setText(""); 
+            
+            ta2.setText("");
+            postLabel2.setText(""); 
+            
+            ta3.setText("");
+            postLabel3.setText(""); 
+            
+            ta4.setText("");
+            postLabel4.setText(""); 
+
+            ta5.setText("");
+            postLabel5.setText("");   
+
+            ta6.setText("");
+            postLabel6.setText(""); 
+
+            ta7.setText("");
+            postLabel7.setText("");   
+
+            ta8.setText("");
+            postLabel8.setText("");  
+
+            ta9.setText("");
+            postLabel9.setText("");  
+
+            ta10.setText("");
+            postLabel10.setText(""); 
+    
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -295,12 +606,32 @@ public class FormellaBloggen extends javax.swing.JFrame {
         jbRedigera9 = new javax.swing.JButton();
         jbRedigera10 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        startDate = new com.toedter.calendar.JCalendar();
+        endDate = new com.toedter.calendar.JCalendar();
+        sorteraBtn = new javax.swing.JButton();
         skapaInlaggButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                tester(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jScrollPane11.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane11.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane11.setAutoscrolls(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         ta1.setEditable(false);
         ta1.setColumns(20);
@@ -447,7 +778,7 @@ public class FormellaBloggen extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jbRedigera10)
                     .addComponent(jbRedigera9)
@@ -488,7 +819,7 @@ public class FormellaBloggen extends javax.swing.JFrame {
                         .addComponent(jScrollPane9)
                         .addComponent(postLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbRedigera2, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addContainerGap(612, Short.MAX_VALUE))
+                .addContainerGap(606, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,17 +883,17 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 .addComponent(jbRedigera8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(postLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jbRedigera9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jbRedigera9)
+                .addGap(50, 50, 50)
+                .addComponent(postLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbRedigera10)
-                .addGap(10, 10, 10))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         jScrollPane11.setViewportView(jPanel1);
@@ -570,10 +901,49 @@ public class FormellaBloggen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
         jLabel1.setText("Formella Bloggen");
 
-        skapaInlaggButton.setText("Skapa inlägg");
+        sorteraBtn.setText("Sortera");
+        sorteraBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sorteraBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sorteraBtn)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(621, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sorteraBtn)
+                .addGap(0, 13, Short.MAX_VALUE))
+        );
+
+        skapaInlaggButton.setText("Skapa nytt inlägg");
         skapaInlaggButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 skapaInlaggButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -582,27 +952,37 @@ public class FormellaBloggen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(437, 437, 437)
+                .addGap(304, 304, 304)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(skapaInlaggButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(203, 203, 203)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(skapaInlaggButton)
+                    .addComponent(jButton1))
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(skapaInlaggButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(skapaInlaggButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(0, 433, Short.MAX_VALUE))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -622,7 +1002,6 @@ public class FormellaBloggen extends javax.swing.JFrame {
     private void jbRedigera1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera1ActionPerformed
         String id = postLabel1.getText().substring(0, postLabel1.getText().indexOf("."));
         new RedigeraInlagg(id).setVisible(true);
-        
     }//GEN-LAST:event_jbRedigera1ActionPerformed
 
     private void jbRedigera2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera2ActionPerformed
@@ -664,6 +1043,139 @@ public class FormellaBloggen extends javax.swing.JFrame {
         String id = postLabel10.getText().substring(0, postLabel10.getText().indexOf("."));
         new RedigeraInlagg(id).setVisible(true);
     }//GEN-LAST:event_jbRedigera10ActionPerformed
+
+    private void sorteraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sorteraBtnActionPerformed
+        
+        String datum1 = startDate.getDate().toString();
+        String datum2 = endDate.getDate().toString();
+        boolean ok = false;
+        
+        //Control to see if the start date is berofre end date.
+        if(startDate.getDate().before(endDate.getDate())) 
+        {
+            ok = true;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Datumen du försökte ange är inte korrekt");
+        }
+        
+        if(datum1 != null && datum2 != null && ok)
+        {
+            setAllVisible();
+            setAllTextToZero();
+            
+            String startDatum = fixStartDate(datum1);
+            String slutDatum = fixEndDate(datum2);
+            
+            System.out.println(startDatum + " " + slutDatum);
+            
+            //Retrieve the posts between two chosen dates.
+            ArrayList<HashMap<String, String>> sorterade = DatabaseHandler.fetchRows("select * from formellainlagg where Publiceringsdatum between '" + startDatum + "' and '" + slutDatum + "' group by Publiceringsdatum desc");
+            
+            if(sorterade != null)
+            {    
+                int i = 0;
+            
+                while(i < sorterade.size() && i < 10)
+                {   
+                    String text = sorterade.get(i).get("Text");
+                    String ID = sorterade.get(i).get("Id");
+                    String avsandare = sorterade.get(i).get("LarareId");
+                    String date = sorterade.get(i).get("Publiceringsdatum");
+            
+                    // Retrieve the info about a teacher
+                    ArrayList<HashMap<String, String>> larare = DatabaseHandler.fetchRows("select * from larare where Id = " + avsandare);
+            
+                    String titel = "";
+            
+                    // Creating a String with the info about the retrieved teacher
+                    for(HashMap<String, String> infoOmLarare : larare)
+                    {
+                        titel = ID + ".   " + infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title 
+                        titel = titel.substring(0, titel.length() - 2);
+                    }
+            
+                    String message = text;
+                    
+                        boolean hittad = false;
+                        if(User.id.equalsIgnoreCase(avsandare))
+                        {
+                            hittad = true;
+                        }    
+                
+                    // Adding text to the Areatextfields.
+                    switch(i) 
+                    {
+                    case 0: 
+                        ta1.setText(message);
+                        postLabel1.setText(titel);
+                        break;
+                    case 1: 
+                        ta2.setText(message);
+                        postLabel2.setText(titel);
+                        break;
+                    case 2:
+                        ta3.setText(message);
+                        postLabel3.setText(titel);
+                        break;
+                    case 3:
+                        ta4.setText(message);
+                        postLabel4.setText(titel);
+                        break;
+                    case 4:
+                        ta5.setText(message);
+                        postLabel5.setText(titel);
+                        break;
+                    case 5:
+                        ta6.setText(message);
+                        postLabel6.setText(titel);
+                        break;
+                    case 6:
+                        ta7.setText(message);
+                        postLabel7.setText(titel);
+                        break;
+                    case 7:
+                        ta8.setText(message);
+                        postLabel8.setText(titel);
+                        break;
+                    case 8:
+                        ta9.setText(message);
+                        postLabel9.setText(titel);
+                        break;
+                    case 9:
+                        ta10.setText(message);
+                        postLabel10.setText(titel);
+                        break;                  
+                    default:
+                        JOptionPane.showMessageDialog(null, "Error");
+                        break;
+                    }
+                    finding(hittad, i);
+                    i++;
+                }               
+            findEmpty();
+            }
+            else{
+                ta1.setText("Inga inlägg hittades");
+                postLabel1.setText(".");
+                findEmpty();
+            }       
+        }      
+    }//GEN-LAST:event_sorteraBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        getAllPosts();
+        printPosts();      
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    }//GEN-LAST:event_formWindowOpened
+
+    private void tester(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_tester
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    }//GEN-LAST:event_tester
 
     /**
      * @param args the command line arguments
@@ -708,8 +1220,11 @@ public class FormellaBloggen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JCalendar endDate;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -742,6 +1257,8 @@ public class FormellaBloggen extends javax.swing.JFrame {
     private javax.swing.JLabel postLabel8;
     private javax.swing.JLabel postLabel9;
     private javax.swing.JButton skapaInlaggButton;
+    private javax.swing.JButton sorteraBtn;
+    private com.toedter.calendar.JCalendar startDate;
     private javax.swing.JTextArea ta1;
     private javax.swing.JTextArea ta10;
     private javax.swing.JTextArea ta2;
