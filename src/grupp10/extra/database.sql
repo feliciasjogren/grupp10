@@ -26,7 +26,8 @@ create table Larare
     isAdmin boolean,
     isDeleted boolean,
     primary key(Id),
-    unique (Anvandarnamn, Email)
+    unique (Anvandarnamn),
+    unique (Email)
 );
 
 create table FormellaInlagg
@@ -38,9 +39,72 @@ create table FormellaInlagg
     isDeleted boolean,
     AntalLasningar int not null,
     LarareId int,
+    Huvudkategori int,
     primary key (Id),
     foreign key (LarareId) references Larare(Id)
 );
+
+create table FormellaInlaggLastAv
+(
+    FormellaInlaggId int not null,
+    LarareId int not null,
+    unique (FormellaInlaggId, LarareId)
+);
+
+create table FormellaInlagg_Huvudkategori
+(
+    Id int not null auto_increment,
+    Kategori varchar(40),
+    primary key (Id)
+);
+
+create table FormellaInlagg_Bild
+(
+    FormellainlaggId int not null,
+    Bild longblob not null,
+    Bildtext varchar(60),
+    Ordning int not null,
+    unique (FormellainlaggId, Ordning),
+    foreign key (FormellainlaggId) references FormellaInlagg (Id)
+);
+
+create table Inbjudning
+(
+    Id int not null auto_increment,
+    LarareId int not null,
+    Rubrik varchar(40) not null,
+    Beskrivning varchar(3000) not null,
+    BestamdTidpunkt int,
+    primary key (Id),
+    foreign key (LarareId) references Larare (Id),
+    foreign key (BestamdTidpunkt) references Inbjudning_Tidpunkt (Id)
+);
+
+create table Inbjudning_Tidpunkt
+(
+    Id int not null auto_increment,
+    Datum date not null,
+    Timslag char(2) not null,
+    Minutslag char(2) not null,
+    primary key (Id)
+);
+
+create table Inbjudning_Deltagare
+(
+    InbjudningId int not null,
+    Deltagare int not null,
+    primary key (InbjudningId, Deltagare),
+    foreign key (InbjudningId) references Inbjudning (Id),
+    foreign key (Deltagare) references Larare (Id)
+);
+
+
+-- create table BlobTest
+-- (
+--    Id int not null auto_increment,
+--    Image longblob,
+--    primary key (Id)
+-- );
 
 -- sample data
 insert into Larare (Id, Anvandarnamn, Losenord, Fornamn, Efternamn, Email, Titel, Rumsnummer, isAdmin, isDeleted)
@@ -66,5 +130,9 @@ values (default, "Möte!", "Imorgon bitti är det möte i aulan.", "2014.03.05",
 
 insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId)
 values (default, "Löneförhöjning", "Allas löner ökar med 10%.", "2015.04.08", false, 2, 4);
+
+insert into FormellaInlagg_Huvudkategori(Id, Kategori) values (default, 'Ämnesgrupp');
+insert into FormellaInlagg_Huvudkategori(Id, Kategori) values (default, 'Handledarkollegium');
+insert into FormellaInlagg_Huvudkategori(Id, Kategori) values (default, 'Forskarkollegium');
 
 set FOREIGN_KEY_CHECKS = 1;
