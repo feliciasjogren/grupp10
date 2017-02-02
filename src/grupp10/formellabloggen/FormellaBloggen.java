@@ -7,10 +7,9 @@ package grupp10.formellabloggen;
 
 import grupp10.User;
 import grupp10.utility.DatabaseHandler;
-import java.beans.PropertyEditorManager;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -29,7 +28,31 @@ public class FormellaBloggen extends javax.swing.JFrame {
         getAllPosts();
         printPosts();
         findPostForUser();
+        retrieveCategory();
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xsize = (int)tk.getScreenSize().getWidth();
+        int ysize = (int)tk.getScreenSize().getHeight();
+        this.setSize(xsize, ysize);
+        
     }
+    
+    private void retrieveCategory()
+    {
+        categoryComboBox.removeAllItems();
+        categoryComboBox.addItem("Alla kategorier");
+        
+        ArrayList<HashMap<String, String>> kategorier = DatabaseHandler.fetchRows("select * from formellainlagg_huvudkategori");
+        
+        for(HashMap<String, String> kg : kategorier)
+        {
+            String id = kg.get("Id");
+            String kategoriNamn = kg.get("Kategori");
+            categoryComboBox.addItem(id + ". " + kategoriNamn);
+        }
+    }
+    
+    
     
     /**
      * Method to retrieve all the posts from the database.
@@ -136,60 +159,70 @@ public class FormellaBloggen extends javax.swing.JFrame {
             jScrollPane1.setVisible(false);
             postLabel1.setVisible(false);
             jbRedigera1.setVisible(false);
+            jcbLast.setVisible(false);
         }
         if(ta2.getText().isEmpty())
         {
             jScrollPane2.setVisible(false);
             postLabel2.setVisible(false);
             jbRedigera2.setVisible(false);
+            jcbLast1.setVisible(false);
         }    
         if(ta3.getText().isEmpty())
         {
             jScrollPane3.setVisible(false);
             postLabel3.setVisible(false);
             jbRedigera3.setVisible(false);
+            jcbLast2.setVisible(false);
         }    
         if(ta4.getText().isEmpty())
         {
             jScrollPane4.setVisible(false);
             postLabel4.setVisible(false);
             jbRedigera4.setVisible(false);
+            jcbLast3.setVisible(false);
         }
         if(ta5.getText().isEmpty())
         {
             jScrollPane5.setVisible(false);
             postLabel5.setVisible(false);
             jbRedigera5.setVisible(false);
+            jcbLast4.setVisible(false);
         }
         if(ta6.getText().isEmpty())
         {
             jScrollPane6.setVisible(false);
             postLabel6.setVisible(false);
             jbRedigera6.setVisible(false);
+            jcbLast5.setVisible(false);
         }
         if(ta7.getText().isEmpty())
         {
             jScrollPane7.setVisible(false);
             postLabel7.setVisible(false);
             jbRedigera7.setVisible(false);
+            jcbLast6.setVisible(false);
         }
         if(ta8.getText().isEmpty())
         {
             jScrollPane8.setVisible(false);
             postLabel8.setVisible(false);
             jbRedigera8.setVisible(false);
+            jcbLast7.setVisible(false);
         }
         if(ta9.getText().isEmpty())
         {
             jScrollPane9.setVisible(false);
             postLabel9.setVisible(false);
             jbRedigera9.setVisible(false);
+            jcbLast8.setVisible(false);
         }
         if(ta10.getText().isEmpty())
         {
             jScrollPane10.setVisible(false);
             postLabel10.setVisible(false);
             jbRedigera10.setVisible(false);
+            jcbLast9.setVisible(false);
         }
         pack();
     }
@@ -202,42 +235,52 @@ public class FormellaBloggen extends javax.swing.JFrame {
             jScrollPane1.setVisible(true);
             postLabel1.setVisible(true);
             jbRedigera1.setVisible(true);
+            jcbLast.setVisible(true);
             
             jScrollPane2.setVisible(true);
             postLabel2.setVisible(true);
             jbRedigera2.setVisible(true);
+            jcbLast1.setVisible(true);
             
             jScrollPane3.setVisible(true);
             postLabel3.setVisible(true);
             jbRedigera3.setVisible(true);
+            jcbLast2.setVisible(true);
             
             jScrollPane4.setVisible(true);
             postLabel4.setVisible(true);
             jbRedigera4.setVisible(true);
+            jcbLast3.setVisible(true);
 
             jScrollPane5.setVisible(true);
             postLabel5.setVisible(true);
             jbRedigera5.setVisible(true);
+            jcbLast4.setVisible(true);
 
             jScrollPane6.setVisible(true);
             postLabel6.setVisible(true); 
             jbRedigera6.setVisible(true);
+            jcbLast5.setVisible(true);
 
             jScrollPane7.setVisible(true);
             postLabel7.setVisible(true);  
             jbRedigera7.setVisible(true);
+            jcbLast6.setVisible(true);
 
             jScrollPane8.setVisible(true);
             postLabel8.setVisible(true);  
             jbRedigera8.setVisible(true);
+            jcbLast7.setVisible(true);
 
             jScrollPane9.setVisible(true);
             postLabel9.setVisible(true);  
             jbRedigera9.setVisible(true);
+            jcbLast8.setVisible(true);
 
             jScrollPane10.setVisible(true);
             postLabel10.setVisible(true);   
-            jbRedigera10.setVisible(true);            
+            jbRedigera10.setVisible(true); 
+            jcbLast9.setVisible(true);
     }
     
     /**
@@ -401,7 +444,64 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 break;          
         } 
     }
-    
+
+    private void hideReadCheckBox(boolean founded, int index)
+    {
+        switch(index)
+        {
+            case 0:
+                if(!founded){
+                    jcbLast.setVisible(false);
+                }
+                break;
+            case 1:
+                if(!founded){
+                    jcbLast1.setVisible(false);
+                }
+                break;
+                
+            case 2:
+                if(!founded){
+                    jcbLast2.setVisible(false);
+                }
+                break;
+            case 3:
+                if(!founded){
+                    jcbLast3.setVisible(false);
+                }
+                break;
+            case 4:
+                if(!founded){
+                    jcbLast4.setVisible(false);
+                }
+                break;
+            case 5:
+                if(!founded){
+                    jcbLast5.setVisible(false);
+                }
+                break;
+            case 6:
+                if(!founded){
+                    jcbLast6.setVisible(false);
+                }
+                break;
+            case 7:
+                if(!founded){
+                    jcbLast7.setVisible(false);
+                }
+                break;
+            case 8:
+                if(!founded){
+                    jcbLast8.setVisible(false);
+                }
+                break;
+            case 9:
+                if(!founded){
+                    jcbLast9.setVisible(false);
+                }
+                break;          
+        } 
+    }    
     /**
      * Fix a properly String that matches the SQL query
      * @param date 
@@ -554,6 +654,246 @@ public class FormellaBloggen extends javax.swing.JFrame {
             postLabel10.setText(""); 
     
     }    
+    
+    private void sortByDate()
+    {
+        String datum1 = startDate.getDate().toString();
+        String datum2 = endDate.getDate().toString();
+        boolean ok = false;
+        
+        //Control to see if the start date is berofre end date.
+        if(startDate.getDate().before(endDate.getDate())) 
+        {
+            ok = true;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Datumen du försökte ange är inte korrekt");
+        }
+        
+        if(datum1 != null && datum2 != null && ok)
+        {
+            setAllVisible();
+            setAllTextToZero();
+            
+            String startDatum = fixStartDate(datum1);
+            String slutDatum = fixEndDate(datum2);
+            
+            System.out.println(startDatum + " " + slutDatum);
+            
+            //Retrieve the posts between two chosen dates.
+            ArrayList<HashMap<String, String>> sorterade = DatabaseHandler.fetchRows("select * from formellainlagg where Publiceringsdatum between '" + startDatum + "' and '" + slutDatum + "' group by Publiceringsdatum desc");
+            
+            if(sorterade != null)
+            {    
+                int i = 0;
+            
+                while(i < sorterade.size() && i < 10)
+                {   
+                    String text = sorterade.get(i).get("Text");
+                    String ID = sorterade.get(i).get("Id");
+                    String avsandare = sorterade.get(i).get("LarareId");
+                    String date = sorterade.get(i).get("Publiceringsdatum");
+            
+                    // Retrieve the info about a teacher
+                    ArrayList<HashMap<String, String>> larare = DatabaseHandler.fetchRows("select * from larare where Id = " + avsandare);
+            
+                    String titel = "";
+            
+                    // Creating a String with the info about the retrieved teacher
+                    for(HashMap<String, String> infoOmLarare : larare)
+                    {
+                        titel = ID + ".   " + infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title 
+                        titel = titel.substring(0, titel.length() - 2);
+                    }
+            
+                    String message = text;
+                    
+                        boolean hittad = false;
+                        if(User.id.equalsIgnoreCase(avsandare))
+                        {
+                            hittad = true;
+                        }    
+                
+                    // Adding text to the Areatextfields.
+                    switch(i) 
+                    {
+                    case 0: 
+                        ta1.setText(message);
+                        postLabel1.setText(titel);
+                        break;
+                    case 1: 
+                        ta2.setText(message);
+                        postLabel2.setText(titel);
+                        break;
+                    case 2:
+                        ta3.setText(message);
+                        postLabel3.setText(titel);
+                        break;
+                    case 3:
+                        ta4.setText(message);
+                        postLabel4.setText(titel);
+                        break;
+                    case 4:
+                        ta5.setText(message);
+                        postLabel5.setText(titel);
+                        break;
+                    case 5:
+                        ta6.setText(message);
+                        postLabel6.setText(titel);
+                        break;
+                    case 6:
+                        ta7.setText(message);
+                        postLabel7.setText(titel);
+                        break;
+                    case 7:
+                        ta8.setText(message);
+                        postLabel8.setText(titel);
+                        break;
+                    case 8:
+                        ta9.setText(message);
+                        postLabel9.setText(titel);
+                        break;
+                    case 9:
+                        ta10.setText(message);
+                        postLabel10.setText(titel);
+                        break;                  
+                    default:
+                        JOptionPane.showMessageDialog(null, "Error");
+                        break;
+                    }
+                    finding(hittad, i);
+                    i++;
+                }               
+            findEmpty();
+            }
+            else{
+                ta1.setText("Inga inlägg hittades");
+                postLabel1.setText(".");
+                findEmpty();
+            }       
+        }     
+    }
+    
+    private void sortByDateAndCategory()
+    {
+        String datum1 = startDate.getDate().toString();
+        String datum2 = endDate.getDate().toString();
+        boolean ok = false;
+        
+        //Control to see if the start date is berofre end date.
+        if(startDate.getDate().before(endDate.getDate())) 
+        {
+            ok = true;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Datumen du försökte ange är inte korrekt");
+        }
+        
+        if(datum1 != null && datum2 != null && ok)
+        {
+            setAllVisible();
+            setAllTextToZero();
+            
+            String startDatum = fixStartDate(datum1);
+            String slutDatum = fixEndDate(datum2);
+            String kategoriID = categoryComboBox.getSelectedItem().toString().substring(0, categoryComboBox.getSelectedItem().toString().indexOf("."));
+            
+            System.out.println(startDatum + " " + slutDatum);
+            
+            //Retrieve the posts between two chosen dates.
+            ArrayList<HashMap<String, String>> sorterade = DatabaseHandler.fetchRows("select * from formellainlagg join formellainlagg_huvudkategori on formellainlagg_huvudkategori.Id = Huvudkategori where Publiceringsdatum between '" + startDatum + "' and '" + slutDatum + "' and Huvudkategori = " + kategoriID + " group by Publiceringsdatum desc");
+            
+            if(sorterade != null)
+            {    
+                int i = 0;
+            
+                while(i < sorterade.size() && i < 10)
+                {   
+                    String text = sorterade.get(i).get("Text");
+                    String ID = sorterade.get(i).get("Id");
+                    String avsandare = sorterade.get(i).get("LarareId");
+                    String date = sorterade.get(i).get("Publiceringsdatum");
+            
+                    // Retrieve the info about a teacher
+                    ArrayList<HashMap<String, String>> larare = DatabaseHandler.fetchRows("select * from larare where Id = " + avsandare);
+            
+                    String titel = "";
+            
+                    // Creating a String with the info about the retrieved teacher
+                    for(HashMap<String, String> infoOmLarare : larare)
+                    {
+                        titel = ID + ".   " + infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title 
+                        titel = titel.substring(0, titel.length() - 2);
+                    }
+            
+                    String message = text;
+                    
+                        boolean hittad = false;
+                        if(User.id.equalsIgnoreCase(avsandare))
+                        {
+                            hittad = true;
+                        }    
+                
+                    // Adding text to the Areatextfields.
+                    switch(i) 
+                    {
+                    case 0: 
+                        ta1.setText(message);
+                        postLabel1.setText(titel);
+                        break;
+                    case 1: 
+                        ta2.setText(message);
+                        postLabel2.setText(titel);
+                        break;
+                    case 2:
+                        ta3.setText(message);
+                        postLabel3.setText(titel);
+                        break;
+                    case 3:
+                        ta4.setText(message);
+                        postLabel4.setText(titel);
+                        break;
+                    case 4:
+                        ta5.setText(message);
+                        postLabel5.setText(titel);
+                        break;
+                    case 5:
+                        ta6.setText(message);
+                        postLabel6.setText(titel);
+                        break;
+                    case 6:
+                        ta7.setText(message);
+                        postLabel7.setText(titel);
+                        break;
+                    case 7:
+                        ta8.setText(message);
+                        postLabel8.setText(titel);
+                        break;
+                    case 8:
+                        ta9.setText(message);
+                        postLabel9.setText(titel);
+                        break;
+                    case 9:
+                        ta10.setText(message);
+                        postLabel10.setText(titel);
+                        break;                  
+                    default:
+                        JOptionPane.showMessageDialog(null, "Error");
+                        break;
+                    }
+                    finding(hittad, i);
+                    i++;
+                }               
+            findEmpty();
+            }
+            else{
+                ta1.setText("Inga inlägg hittades");
+                postLabel1.setText(".");
+                findEmpty();
+            }       
+        }    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -605,26 +945,28 @@ public class FormellaBloggen extends javax.swing.JFrame {
         jbRedigera8 = new javax.swing.JButton();
         jbRedigera9 = new javax.swing.JButton();
         jbRedigera10 = new javax.swing.JButton();
+        jcbLast = new javax.swing.JCheckBox();
+        jcbLast1 = new javax.swing.JCheckBox();
+        jcbLast2 = new javax.swing.JCheckBox();
+        jcbLast3 = new javax.swing.JCheckBox();
+        jcbLast4 = new javax.swing.JCheckBox();
+        jcbLast5 = new javax.swing.JCheckBox();
+        jcbLast6 = new javax.swing.JCheckBox();
+        jcbLast7 = new javax.swing.JCheckBox();
+        jcbLast8 = new javax.swing.JCheckBox();
+        jcbLast9 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         startDate = new com.toedter.calendar.JCalendar();
         endDate = new com.toedter.calendar.JCalendar();
         sorteraBtn = new javax.swing.JButton();
+        categoryComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         skapaInlaggButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-        addWindowStateListener(new java.awt.event.WindowStateListener() {
-            public void windowStateChanged(java.awt.event.WindowEvent evt) {
-                tester(evt);
-            }
-        });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jScrollPane11.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane11.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -773,6 +1115,26 @@ public class FormellaBloggen extends javax.swing.JFrame {
             }
         });
 
+        jcbLast.setText("Läst");
+
+        jcbLast1.setText("Läst");
+
+        jcbLast2.setText("Läst");
+
+        jcbLast3.setText("Läst");
+
+        jcbLast4.setText("Läst");
+
+        jcbLast5.setText("Läst");
+
+        jcbLast6.setText("Läst");
+
+        jcbLast7.setText("Läst");
+
+        jcbLast8.setText("Läst");
+
+        jcbLast9.setText("Läst");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -780,120 +1142,156 @@ public class FormellaBloggen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbRedigera10)
-                    .addComponent(jbRedigera9)
-                    .addComponent(jbRedigera8)
-                    .addComponent(jbRedigera7)
-                    .addComponent(jbRedigera3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(postLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(postLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbRedigera6))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(postLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jbRedigera5))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(postLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jbRedigera4))
-                        .addComponent(postLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(postLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(postLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jbRedigera1))
-                        .addComponent(jScrollPane5)
-                        .addComponent(jScrollPane10)
-                        .addComponent(jScrollPane2)
-                        .addComponent(jScrollPane1)
-                        .addComponent(jScrollPane3)
-                        .addComponent(jScrollPane4)
-                        .addComponent(jScrollPane6)
-                        .addComponent(jScrollPane7)
-                        .addComponent(jScrollPane8)
-                        .addComponent(jScrollPane9)
-                        .addComponent(postLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbRedigera2, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addContainerGap(606, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jcbLast2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbRedigera3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(postLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jcbLast9, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbRedigera10))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(postLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(postLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(postLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jcbLast5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbRedigera6))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jcbLast4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jbRedigera5))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jcbLast3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jbRedigera4))
+                                .addComponent(postLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(postLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5)
+                                .addComponent(jScrollPane10)
+                                .addComponent(jScrollPane2)
+                                .addComponent(jScrollPane1)
+                                .addComponent(jScrollPane3)
+                                .addComponent(jScrollPane4)
+                                .addComponent(jScrollPane6)
+                                .addComponent(jScrollPane7)
+                                .addComponent(jScrollPane8)
+                                .addComponent(jScrollPane9)
+                                .addComponent(postLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jcbLast1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jbRedigera2))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jcbLast, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jbRedigera1))
+                                .addComponent(postLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(postLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jcbLast8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbRedigera9))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jcbLast7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbRedigera8))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jcbLast6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbRedigera7)))))
+                .addContainerGap(612, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
                 .addComponent(postLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(postLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbRedigera1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera1)
+                    .addComponent(jcbLast))
+                .addGap(18, 18, 18)
+                .addComponent(postLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jbRedigera2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera2)
+                    .addComponent(jcbLast1))
+                .addGap(18, 18, 18)
                 .addComponent(postLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jbRedigera3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera3)
+                    .addComponent(jcbLast2))
+                .addGap(18, 18, 18)
                 .addComponent(postLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(postLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbRedigera4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera4)
+                    .addComponent(jcbLast3))
+                .addGap(22, 22, 22)
+                .addComponent(postLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(postLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbRedigera5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera5)
+                    .addComponent(jcbLast4))
+                .addGap(25, 25, 25)
+                .addComponent(postLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbRedigera6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jbRedigera7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera6)
+                    .addComponent(jcbLast5))
+                .addGap(21, 21, 21)
+                .addComponent(postLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera7)
+                    .addComponent(jcbLast6))
+                .addGap(18, 18, 18)
                 .addComponent(postLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jbRedigera8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera8)
+                    .addComponent(jcbLast7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(postLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jbRedigera9)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera9)
+                    .addComponent(jcbLast8))
+                .addGap(52, 52, 52)
                 .addComponent(postLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbRedigera10)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbRedigera10)
+                    .addComponent(jcbLast9))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jScrollPane11.setViewportView(jPanel1);
@@ -908,6 +1306,10 @@ public class FormellaBloggen extends javax.swing.JFrame {
             }
         });
 
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null" }));
+
+        jLabel2.setText("Kategori: ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -920,7 +1322,11 @@ public class FormellaBloggen extends javax.swing.JFrame {
                         .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
                         .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addGap(190, 190, 190)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -931,6 +1337,12 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sorteraBtn)
                 .addGap(0, 13, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         skapaInlaggButton.setText("Skapa nytt inlägg");
@@ -952,27 +1364,27 @@ public class FormellaBloggen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(304, 304, 304)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(203, 203, 203)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(skapaInlaggButton)
                     .addComponent(jButton1))
-                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(39, 39, 39)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -980,9 +1392,8 @@ public class FormellaBloggen extends javax.swing.JFrame {
                         .addComponent(skapaInlaggButton)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(0, 433, Short.MAX_VALUE))
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addContainerGap())
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         pack();
@@ -1046,121 +1457,15 @@ public class FormellaBloggen extends javax.swing.JFrame {
 
     private void sorteraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sorteraBtnActionPerformed
         
-        String datum1 = startDate.getDate().toString();
-        String datum2 = endDate.getDate().toString();
-        boolean ok = false;
-        
-        //Control to see if the start date is berofre end date.
-        if(startDate.getDate().before(endDate.getDate())) 
+        if(categoryComboBox.getSelectedItem().toString().startsWith("Alla"))
         {
-            ok = true;
+            sortByDate();
         }
         else{
-            JOptionPane.showMessageDialog(null, "Datumen du försökte ange är inte korrekt");
-        }
         
-        if(datum1 != null && datum2 != null && ok)
-        {
-            setAllVisible();
-            setAllTextToZero();
-            
-            String startDatum = fixStartDate(datum1);
-            String slutDatum = fixEndDate(datum2);
-            
-            System.out.println(startDatum + " " + slutDatum);
-            
-            //Retrieve the posts between two chosen dates.
-            ArrayList<HashMap<String, String>> sorterade = DatabaseHandler.fetchRows("select * from formellainlagg where Publiceringsdatum between '" + startDatum + "' and '" + slutDatum + "' group by Publiceringsdatum desc");
-            
-            if(sorterade != null)
-            {    
-                int i = 0;
-            
-                while(i < sorterade.size() && i < 10)
-                {   
-                    String text = sorterade.get(i).get("Text");
-                    String ID = sorterade.get(i).get("Id");
-                    String avsandare = sorterade.get(i).get("LarareId");
-                    String date = sorterade.get(i).get("Publiceringsdatum");
-            
-                    // Retrieve the info about a teacher
-                    ArrayList<HashMap<String, String>> larare = DatabaseHandler.fetchRows("select * from larare where Id = " + avsandare);
-            
-                    String titel = "";
-            
-                    // Creating a String with the info about the retrieved teacher
-                    for(HashMap<String, String> infoOmLarare : larare)
-                    {
-                        titel = ID + ".   " + infoOmLarare.get("Fornamn") + " " + infoOmLarare.get("Efternamn") + ", " + infoOmLarare.get("Titel") + ", " + infoOmLarare.get("Anvandarnamn") + ", " + date; //creating the title 
-                        titel = titel.substring(0, titel.length() - 2);
-                    }
-            
-                    String message = text;
-                    
-                        boolean hittad = false;
-                        if(User.id.equalsIgnoreCase(avsandare))
-                        {
-                            hittad = true;
-                        }    
-                
-                    // Adding text to the Areatextfields.
-                    switch(i) 
-                    {
-                    case 0: 
-                        ta1.setText(message);
-                        postLabel1.setText(titel);
-                        break;
-                    case 1: 
-                        ta2.setText(message);
-                        postLabel2.setText(titel);
-                        break;
-                    case 2:
-                        ta3.setText(message);
-                        postLabel3.setText(titel);
-                        break;
-                    case 3:
-                        ta4.setText(message);
-                        postLabel4.setText(titel);
-                        break;
-                    case 4:
-                        ta5.setText(message);
-                        postLabel5.setText(titel);
-                        break;
-                    case 5:
-                        ta6.setText(message);
-                        postLabel6.setText(titel);
-                        break;
-                    case 6:
-                        ta7.setText(message);
-                        postLabel7.setText(titel);
-                        break;
-                    case 7:
-                        ta8.setText(message);
-                        postLabel8.setText(titel);
-                        break;
-                    case 8:
-                        ta9.setText(message);
-                        postLabel9.setText(titel);
-                        break;
-                    case 9:
-                        ta10.setText(message);
-                        postLabel10.setText(titel);
-                        break;                  
-                    default:
-                        JOptionPane.showMessageDialog(null, "Error");
-                        break;
-                    }
-                    finding(hittad, i);
-                    i++;
-                }               
-            findEmpty();
-            }
-            else{
-                ta1.setText("Inga inlägg hittades");
-                postLabel1.setText(".");
-                findEmpty();
-            }       
-        }      
+        sortByDateAndCategory();
+        
+        }
     }//GEN-LAST:event_sorteraBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1168,14 +1473,6 @@ public class FormellaBloggen extends javax.swing.JFrame {
         getAllPosts();
         printPosts();      
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        setExtendedState(JFrame.MAXIMIZED_BOTH); 
-    }//GEN-LAST:event_formWindowOpened
-
-    private void tester(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_tester
-        setExtendedState(JFrame.MAXIMIZED_BOTH); 
-    }//GEN-LAST:event_tester
 
     /**
      * @param args the command line arguments
@@ -1220,9 +1517,11 @@ public class FormellaBloggen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> categoryComboBox;
     private com.toedter.calendar.JCalendar endDate;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1246,6 +1545,16 @@ public class FormellaBloggen extends javax.swing.JFrame {
     private javax.swing.JButton jbRedigera7;
     private javax.swing.JButton jbRedigera8;
     private javax.swing.JButton jbRedigera9;
+    private javax.swing.JCheckBox jcbLast;
+    private javax.swing.JCheckBox jcbLast1;
+    private javax.swing.JCheckBox jcbLast2;
+    private javax.swing.JCheckBox jcbLast3;
+    private javax.swing.JCheckBox jcbLast4;
+    private javax.swing.JCheckBox jcbLast5;
+    private javax.swing.JCheckBox jcbLast6;
+    private javax.swing.JCheckBox jcbLast7;
+    private javax.swing.JCheckBox jcbLast8;
+    private javax.swing.JCheckBox jcbLast9;
     private javax.swing.JLabel postLabel1;
     private javax.swing.JLabel postLabel10;
     private javax.swing.JLabel postLabel2;
