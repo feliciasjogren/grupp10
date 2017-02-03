@@ -89,6 +89,9 @@ public class BookEvent extends javax.swing.JFrame {
         return listOfDates;
     }
     
+    /**
+     * 
+     */
     private void insertToDatabase() {
         
         String toDbTitle = tfTitle.getText();
