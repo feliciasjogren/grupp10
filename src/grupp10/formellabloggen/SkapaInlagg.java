@@ -10,7 +10,9 @@ import grupp10.informellabloggen.InformellaBloggen;
 import grupp10.utility.DatabaseHandler;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +26,25 @@ public class SkapaInlagg extends javax.swing.JFrame {
      */
     public SkapaInlagg() {
         initComponents();
+        retrieveCategory();
+                
     }
+
+    private void retrieveCategory()
+    {
+        categoryComboBox.removeAllItems();
+        
+        ArrayList<HashMap<String, String>> kategorier = DatabaseHandler.fetchRows("select * from formellainlagg_huvudkategori");
+        
+        for(HashMap<String, String> kg : kategorier)
+        {
+            String id = kg.get("Id");
+            String kategoriNamn = kg.get("Kategori");
+            categoryComboBox.addItem(id + ". " + kategoriNamn);
+        }
+    }
+
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +64,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
         publiceraButton = new javax.swing.JButton();
         tillbakaButton = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
+        categoryComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -70,6 +91,8 @@ public class SkapaInlagg extends javax.swing.JFrame {
             }
         });
 
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,13 +113,15 @@ public class SkapaInlagg extends javax.swing.JFrame {
                         .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(tillbakaButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(publiceraButton))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(553, Short.MAX_VALUE))
+                .addContainerGap(587, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +137,11 @@ public class SkapaInlagg extends javax.swing.JFrame {
                     .addComponent(inlaggLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(publiceraButton)
-                    .addComponent(tillbakaButton))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(publiceraButton)
+                        .addComponent(tillbakaButton))
+                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(143, 143, 143))
         );
 
@@ -136,7 +163,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
     private void tillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaButtonActionPerformed
         dispose();
     }//GEN-LAST:event_tillbakaButtonActionPerformed
-    
+
     
     /**
      *  Button to publish a post and add it to the database.
@@ -151,6 +178,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
         Date date = new Date();
         String publiceringsDatum = dateFormat.format(date);
+        String kategori = categoryComboBox.getSelectedItem().toString().substring(0, categoryComboBox.getSelectedItem().toString().indexOf("."));
         
         String anvandarnamn = User.username;
         
@@ -163,7 +191,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
                 {
                     if(text.length() > 2)
                     {
-                        if(addPost(rubrik, text, publiceringsDatum, anvandarnamn))
+                        if(addPost(rubrik, text, publiceringsDatum, anvandarnamn, kategori))
                         {
                             JOptionPane.showMessageDialog(null, "Du har skapat ett inlägg");
                             new FormellaBloggen().setVisible(true);
@@ -196,13 +224,13 @@ public class SkapaInlagg extends javax.swing.JFrame {
      * @param anvandarnamn the username
      * @return 
      */
-    private boolean addPost(String rubrik, String text, String datum, String anvandarnamn)
+    private boolean addPost(String rubrik, String text, String datum, String anvandarnamn, String kategori)
     {        
         boolean ok = false;
         
         try{
             String lararID = DatabaseHandler.fetchSingle("select id from larare where anvandarnamn = '" + "asan" +"'");      
-            DatabaseHandler.update("insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId) values (default, '" + rubrik + "', '" + text + "', '" + datum + "', false, 0, " + lararID + ")");
+            DatabaseHandler.update("insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId, Huvudkategori) values (default, '" + rubrik + "', '" + text + "', '" + datum + "', false, 0, " + lararID + ", " + kategori + ")");
             ok = true;  
         }
         catch(Exception ex){
@@ -248,6 +276,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel inlaggLabel;
     private javax.swing.JPanel jPanel1;

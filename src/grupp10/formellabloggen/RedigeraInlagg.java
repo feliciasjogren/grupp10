@@ -39,6 +39,7 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         errorLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setType(java.awt.Window.Type.POPUP);
 
         labelRedigeraInlagg.setText("Redigera inlägg");
 
