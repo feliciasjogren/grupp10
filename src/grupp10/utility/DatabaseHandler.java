@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Handles calls to mysql database.
+ * Handles calls to MYSQL database.
  * Written as an utility class.
  * 
  * @author Robert Östlin
@@ -19,7 +19,7 @@ public class DatabaseHandler {
     private final static String PORT = "3306";
     private final static String DB = "grupp10";
     private final static String USERNAME = "root";
-    private final static String PASSWORD = "masterkey";
+    private final static String PASSWORD = "aaaa";
     
     /**
      * Private constructor which does not allow objects to be created.
@@ -101,6 +101,40 @@ public class DatabaseHandler {
     }
     
     /**
+     * Inserts a row into the database and returns Id
+     * @author Robert Östlin
+     * @param query Query for insertion
+     * @return Returns a String with Id
+     */
+    public static String insertGetId(String query) {
+            Connection con;
+            Statement stmt;
+            int  id = -1;
+            
+            try {
+                // connect to db
+                con = DriverManager.getConnection(connectionJDBC(), USERNAME, PASSWORD);
+                stmt = con.createStatement();
+                
+                // execute query
+                stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+                // get id
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()){
+                    id = rs.getInt(1);
+                }
+                
+                // close connection
+                rs.close();
+                stmt.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return id + "";
+    }
+    
+    /**
      * Deletes a row from the database
      * @author Robert Östlin
      * @param query Query starting with "delete"
@@ -129,25 +163,28 @@ public class DatabaseHandler {
     }
     
     /**
-     * Executes an sql statement
+     * Executes an SQL statement
      * @author Robert Östlin
-     * @param query Sql statement
+     * @param query SQL statement
      * @return whether the execution was successful.
      */
     private static boolean executeStatement(String query) {
         printQuery(query);
         
+        Connection con;
+        Statement stmt;
+        boolean success = false;
+        
         try {
             // connect to database
-            Connection con = DriverManager.getConnection(connectionJDBC(), USERNAME, PASSWORD);
-            Statement stmt = con.createStatement();
+            con = DriverManager.getConnection(connectionJDBC(), USERNAME, PASSWORD);
             stmt = con.createStatement();
             stmt.executeUpdate(query);
-            return true;
+            success = true;
         } catch (Exception e) {
             System.out.println(e);
         }      
-        return false;    
+        return success;   
     }
     
     /**
@@ -201,6 +238,6 @@ public class DatabaseHandler {
     
     private static void printQuery(String query) {
         // print out query
-        System.out.println("query: '" + query + "'");
+        System.out.println("query: " + query);
     }
 }
