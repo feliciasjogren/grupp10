@@ -987,7 +987,9 @@ public class FormellaBloggen extends javax.swing.JFrame {
 
         ta1.setEditable(false);
         ta1.setColumns(20);
+        ta1.setLineWrap(true);
         ta1.setRows(5);
+        ta1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(ta1);
 
         ta2.setEditable(false);
@@ -1342,6 +1344,11 @@ public class FormellaBloggen extends javax.swing.JFrame {
         });
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla" }));
+        categoryComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                categoryComboBoxItemStateChanged(evt);
+            }
+        });
         categoryComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -1349,6 +1356,11 @@ public class FormellaBloggen extends javax.swing.JFrame {
                 categoryComboBoxPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryComboBoxActionPerformed(evt);
             }
         });
 
@@ -1458,7 +1470,6 @@ public class FormellaBloggen extends javax.swing.JFrame {
 
     private void skapaInlaggButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaInlaggButtonActionPerformed
         new SkapaInlagg().setVisible(true);
-        dispose();
     }//GEN-LAST:event_skapaInlaggButtonActionPerformed
 
     private void jbRedigera3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRedigera3ActionPerformed
@@ -1559,6 +1570,12 @@ public class FormellaBloggen extends javax.swing.JFrame {
        
         dispose();     
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+    }//GEN-LAST:event_categoryComboBoxActionPerformed
+
+    private void categoryComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_categoryComboBoxItemStateChanged
+    }//GEN-LAST:event_categoryComboBoxItemStateChanged
 
     /**
      * @param args the command line arguments

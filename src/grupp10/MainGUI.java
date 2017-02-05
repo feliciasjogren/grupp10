@@ -1,8 +1,12 @@
 package grupp10;
 
+import grupp10.admin.ChangeUserInfo;
+import grupp10.admin.RegisterUser;
 import grupp10.formellabloggen.*;
+import grupp10.imagehandler.ImageHandler;
 import grupp10.informellabloggen.InformellaBloggen;
 import grupp10.user.ChangePassword;
+import grupp10.utility.DatabaseHandler;
 
 /**
  * Main window
@@ -15,6 +19,17 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+//        String id = DatabaseHandler.insertGetId("insert into larare (Id, Anvandarnamn, Losenord, Fornamn, Efternamn, Email, Titel, Rumsnummer, isAdmin, isDeleted) " +
+//                                                "values (default, 'aaaaa', 'a', 'a', 'a', 'aaaa@ad', 'titel', 'n20', false, false)");
+//        System.out.println("id: " + id);
+        
+//        ImageHandler imageHandler = new ImageHandler();
+//        String path = imageHandler.fileChooser(this);
+//        
+//        if (!path.equals("")) {
+//            imageHandler.uploadImageToBlog("1", "Hello", path);
+//            imageHandler.displayImage("1", lblImage, lblBildtext);
+//        }
     }
 
     /**
@@ -27,12 +42,15 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         btnFormellaBloggen = new javax.swing.JButton();
+        lblImage = new javax.swing.JLabel();
+        lblBildtext = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuItemRegistreraAnvandare = new javax.swing.JMenuItem();
+        menuItemAndraInformationOmAnvandare = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lärarbloggen - Startsida");
@@ -54,15 +72,33 @@ public class MainGUI extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenu3.setText("Avsluta");
-        jMenu1.add(jMenu3);
+        jMenuItem1.setText("Avsluta");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Admin");
 
-        jMenuItem3.setText("Registrera användare");
-        jMenu2.add(jMenuItem3);
+        menuItemRegistreraAnvandare.setText("Registrera användare");
+        menuItemRegistreraAnvandare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegistreraAnvandareActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuItemRegistreraAnvandare);
+
+        menuItemAndraInformationOmAnvandare.setText("Ändra information om användare");
+        menuItemAndraInformationOmAnvandare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAndraInformationOmAnvandareActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuItemAndraInformationOmAnvandare);
 
         jMenuBar1.add(jMenu2);
 
@@ -73,14 +109,25 @@ public class MainGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(355, 355, 355)
-                .addComponent(btnFormellaBloggen)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(btnFormellaBloggen))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblBildtext, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))))
                 .addContainerGap(385, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblBildtext)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(btnFormellaBloggen)
                 .addGap(214, 214, 214))
         );
@@ -95,8 +142,19 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void btnFormellaBloggenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormellaBloggenActionPerformed
         new FormellaBloggen().setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnFormellaBloggenActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuItemRegistreraAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegistreraAnvandareActionPerformed
+        new RegisterUser().setVisible(true);
+    }//GEN-LAST:event_menuItemRegistreraAnvandareActionPerformed
+
+    private void menuItemAndraInformationOmAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAndraInformationOmAnvandareActionPerformed
+        new ChangeUserInfo().setVisible(true);
+    }//GEN-LAST:event_menuItemAndraInformationOmAnvandareActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,9 +195,12 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnFormellaBloggen;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JLabel lblBildtext;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JMenuItem menuItemAndraInformationOmAnvandare;
+    private javax.swing.JMenuItem menuItemRegistreraAnvandare;
     // End of variables declaration//GEN-END:variables
 }

@@ -59,7 +59,7 @@ public class ChangeUserInfo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cbOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Användarnamn", "Lösenord", "Förnamn", "Efternamn", "Email", "Titel", "Rumsnummer", "Admintillstånd" }));
         cbOption.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +218,7 @@ public class ChangeUserInfo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChangeInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeInfoActionPerformed

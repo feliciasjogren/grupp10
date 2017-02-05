@@ -1,4 +1,4 @@
--- author Robert Östlin, Lukas Lindgren
+-- author Robert Östlin
 drop database if exists grupp10;
 create database grupp10;
 use grupp10;
@@ -37,18 +37,19 @@ create table FormellaInlagg
     `Text` varchar(3000) not null,
     Publiceringsdatum datetime not null,
     isDeleted boolean,
-    AntalLasningar int not null,
     LarareId int,
     Huvudkategori int,
     primary key (Id),
-    foreign key (LarareId) references Larare(Id)
+    foreign key (LarareId) references Larare(Id),
+    foreign key (Huvudkategori) references FormellaInlagg_Huvudkategori (Id)
 );
 
-create table FormellaInlaggLastAv
+create table FormellaInlagg_LastAv_Larare
 (
     FormellaInlaggId int not null,
     LarareId int not null,
     unique (FormellaInlaggId, LarareId),
+    primary key (FormellaInlaggId, LarareId),
     foreign key (FormellaInlaggId) references FormellaInlagg (Id),
     foreign key (LarareId) references Larare (Id)
 );
@@ -60,14 +61,36 @@ create table FormellaInlagg_Huvudkategori
     primary key (Id)
 );
 
-create table FormellaInlagg_Bild
+create table InformellaInlagg
 (
-    FormellainlaggId int not null,
+    Id int not null auto_increment,
+    Rubrik varchar(40) not null,
+    `Text` varchar(3000) not null,
+    Publiceringsdatum datetime not null,
+    isDeleted boolean,
+    LarareId int,
+    primary key (Id),
+    foreign key (LarareId) references Larare(Id)
+);
+
+create table InformellaInlagg_Bild
+(
+    InformellainlaggId int not null,
     Bild longblob not null,
     Bildtext varchar(60),
     Ordning int not null,
-    unique (FormellainlaggId, Ordning),
-    foreign key (FormellainlaggId) references FormellaInlagg (Id)
+    unique (InformellainlaggId, Ordning),
+    foreign key (InformellainlaggId) references InformellaInlagg (Id)
+);
+
+create table InformellaInlagg_LastAv
+(
+    InformellaInlaggId int not null,
+    LarareId int not null,
+    unique (InformellaInlaggId, LarareId),
+    primary key (InformellaInlaggId, LarareId),
+    foreign key (InformellaInlaggId) references InformellaInlagg (Id),
+    foreign key (LarareId) references Larare (Id)
 );
 
 create table Inbjudning
@@ -76,13 +99,13 @@ create table Inbjudning
     LarareId int not null,
     Rubrik varchar(40) not null,
     Beskrivning varchar(3000) not null,
-    BestamdTidpunkt int,
+    BestamtTillfalle int,
     primary key (Id),
     foreign key (LarareId) references Larare (Id),
-    foreign key (BestamdTidpunkt) references Inbjudning_Tidpunkt (Id)
+    foreign key (BestamtTillfalle) references Inbjudning_TillfalleForslag (Id)
 );
 
-create table Inbjudning_Tidpunkt
+create table Inbjudning_TillfalleForslag
 (
     Id int not null auto_increment,
     InbjudningId int not null,
@@ -102,15 +125,7 @@ create table Inbjudning_Deltagare
     foreign key (Deltagare) references Larare (Id)
 );
 
-
--- create table BlobTest
--- (
---    Id int not null auto_increment,
---    Image longblob,
---    primary key (Id)
--- );
-
--- sample data
+-- Test data
 insert into Larare (Id, Anvandarnamn, Losenord, Fornamn, Efternamn, Email, Titel, Rumsnummer, isAdmin, isDeleted)
 values (default, "asan", "anders123", "Anders", "Andersson", "anders_andersson@gmail.com", "Professor", "N4056", true, false);
 
@@ -129,14 +144,37 @@ insert into Telefonnummer (LarareId, Nummer) values ((select Id from Larare wher
 insert into Telefonnummer (LarareId, Nummer) values ((select Id from Larare where Anvandarnamn = 'jsln'), "0706850202");
 insert into Telefonnummer (LarareId, Nummer) values ((select Id from Larare where Anvandarnamn = 'lsbg'), "0700948282");
 
-insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId)
-values (default, "Möte!", "Imorgon bitti är det möte i aulan.", "2014.03.05", false, 10, 1);
+insert into FormellaInlagg_Huvudkategori (Id, Kategori) values (default, 'Ämnesgrupp');
+insert into FormellaInlagg_Huvudkategori (Id, Kategori) values (default, 'Handledarkollegium');
+insert into FormellaInlagg_Huvudkategori (Id, Kategori) values (default, 'Forskarkollegium');
 
-insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, AntalLasningar, LarareId)
-values (default, "Löneförhöjning", "Allas löner ökar med 10%.", "2015.04.08", false, 2, 4);
+-- Formella inlägg
+insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, LarareId, Huvudkategori)
+values (default, "Möte", "Onsdag den 15 är det möte gällande vad som ska finnas för redovisnings verktyg i klassrummen. Plats: Aula Nova\n\n Mvh Anders!", "2014-03-05 15:00:00", false, 1, (select Id from FormellaInlagg_Huvudkategori where Kategori = 'Ämnesgrupp'));
 
-insert into FormellaInlagg_Huvudkategori(Id, Kategori) values (default, 'Ämnesgrupp');
-insert into FormellaInlagg_Huvudkategori(Id, Kategori) values (default, 'Handledarkollegium');
-insert into FormellaInlagg_Huvudkategori(Id, Kategori) values (default, 'Forskarkollegium');
+insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, LarareId, Huvudkategori)
+values (default, "Löneförhöjning", "Allas löner ökar med 10%.", "2015-04-08 16:00:00", false, 4, (select Id from FormellaInlagg_Huvudkategori where Kategori = 'Handledarkollegium'));
+
+insert into FormellaInlagg(Id, Rubrik, Text, Publiceringsdatum, isDeleted, LarareId, Huvudkategori)
+values (default, "Teddy bear",
+"Once upon a time, there was a little boy his name was Ben. On his first birthday, his parents got him a soft cuddly brown teddy bear. The little baby boy carried his teddy bear with him every where he went. At night the teddy bear always got to sleep next to the baby boy in his crib.
+Ben grew up and got his own bedroom and a big bed to sleep in. The teddy bear got to sleep next to him in bed every night. He was his favorite toy.  Ben took his teddy bear everywhere he went. The teddy bear went with the boy to the zoo, all the parks in the area, and even to school.
+Ben became a teenager and he got more and more interested in video games, and going out with his friends. He stopped taking his teddy bear with him, which made the bear a little bit sad. Still, he would put his teddy bear next to him in bed every night.",
+"2015-04-08 17:00:00", false, (select Id from larare where Anvandarnamn = 'lsbg'), (select Id from FormellaInlagg_Huvudkategori where Kategori = 'Forskarkollegium'));
+
+
+-- Informella inlägg
+insert into InformellaInlagg (Id, Rubrik, Text, Publiceringsdatum, isDeleted, LarareId)
+values (default, "Semester", "Skönt med semester!", "2017-01-02 11:15", false, (select Id from Larare where Anvandarnamn = 'asan'));
+
+insert into InformellaInlagg (Id, Rubrik, Text, Publiceringsdatum, isDeleted, LarareId)
+values (default, "The teddy bear",
+"Ben graduated from high school and had to go to a university in the big city. The boy was now a young man.  He would come back home a couple of times every year for just a few days.
+Mom took all of Ben's toys and put them in a big box in the attic.  But, the teddy bear was always special so Mom decided to put him on one of the empty shelves so that when Ben was
+back home to visit he could see his favorite bear. Ben's visits were too short and he spent most of his time visiting with his old friends, neighbors, and family. He would go to bed late at night,
+and often forgot to put the bear in bed anymore. The bear was so sad and missed the nice old days when he got to sleep every night next to Ben in his bed.",
+"2017-02-02 11:30", false, (select Id from Larare where Anvandarnamn = 'lsbg'));
+
+insert into formellainlagg_lastav_larare (F)
 
 set FOREIGN_KEY_CHECKS = 1;

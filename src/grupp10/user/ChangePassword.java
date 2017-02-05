@@ -41,7 +41,7 @@ public class ChangePassword extends javax.swing.JFrame {
         btnChangePassword = new javax.swing.JButton();
         lblLosenordAndrat = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblOldPassword.setText("Gammalt lösenord:");
 

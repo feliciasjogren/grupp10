@@ -52,7 +52,7 @@ public class RegisterUser extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btAddUser.setText("Lägg till användare");
         btAddUser.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +165,7 @@ public class RegisterUser extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 // Denna metod lägger till en användare. 
 // Kontrollerar de olika fälten så att innehållet är korrekt format.

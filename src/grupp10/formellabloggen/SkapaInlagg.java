@@ -66,7 +66,7 @@ public class SkapaInlagg extends javax.swing.JFrame {
         errorLabel = new javax.swing.JLabel();
         categoryComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         textArea.setColumns(20);

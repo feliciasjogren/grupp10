@@ -232,12 +232,19 @@ public class DatabaseHandler {
      * @author Robert Östlin
      * @return String of concatenated JBDC URL
      */
-    private static String connectionJDBC() {
+    public static String connectionJDBC() {
         return "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB + "?useSSL=false";  
     }
     
     private static void printQuery(String query) {
         // print out query
-        System.out.println("query: " + query);
+        System.out.println("sql> " + query);
     }
+    
+    // getters for final db properties
+    public static String getHOST() { return HOST; }
+    public static String getPORT() { return PORT; }
+    public static String getDB() { return DB; }
+    public static String getUSERNAME() { return USERNAME; }
+    public static String getPASSWORD() { return PASSWORD; }
 }
