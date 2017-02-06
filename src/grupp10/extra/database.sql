@@ -105,6 +105,15 @@ create table Inbjudning
     foreign key (BestamtTillfalle) references Inbjudning_TillfalleForslag (Id)
 );
 
+create table Inbjudning_DeltagareSomKan
+(
+    Tillfalle int not null,
+    Deltagare int not null,
+    primary key (Tillfalle, Deltagare), 
+    foreign key (Tillfalle) references Inbjudning_TillfalleForslag (Id),
+    foreign key (Deltagare) references Larare (Id)
+);
+
 create table Inbjudning_TillfalleForslag
 (
     Id int not null auto_increment,
@@ -112,8 +121,10 @@ create table Inbjudning_TillfalleForslag
     Datum date not null,
     Timslag char(2) not null,
     Minutslag char(2) not null,
+    DeltagareSomKan int,
     primary key (Id),
-    foreign key (InbjudningId) references Inbjudning (Id)
+    foreign key (InbjudningId) references Inbjudning (Id),
+    foreign key (DeltagareSomKan) references Inbjudning_DeltagareSomKan (Tillfalle)
 );
 
 create table Inbjudning_Deltagare
@@ -175,6 +186,6 @@ back home to visit he could see his favorite bear. Ben's visits were too short a
 and often forgot to put the bear in bed anymore. The bear was so sad and missed the nice old days when he got to sleep every night next to Ben in his bed.",
 "2017-02-02 11:30", false, (select Id from Larare where Anvandarnamn = 'lsbg'));
 
-insert into formellainlagg_lastav_larare (F)
+-- insert into formellainlagg_lastav_larare (F)
 
 set FOREIGN_KEY_CHECKS = 1;
