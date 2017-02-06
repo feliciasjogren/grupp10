@@ -40,13 +40,13 @@ public class Validation {
      * @return 
      */
     static public boolean isNumerical(String str) {
-        try {
-            int n = Integer.parseInt(str);
-            return true;
-        } catch(NumberFormatException nfe) {
-            System.out.println(nfe.getMessage());
-            return false;
+        for (char c : str.toCharArray())
+        {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
         }
+        return true;
     }
     
     static public boolean hasOnlyLetters(String exp) {
