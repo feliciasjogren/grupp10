@@ -25,6 +25,7 @@ public class ChangeUserInfo extends javax.swing.JFrame {
         initComponents();
         fillComboBox();
         cbYesNo.setVisible(false);
+        
     }
     
 
@@ -58,10 +59,14 @@ public class ChangeUserInfo extends javax.swing.JFrame {
         cbYesNo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblTelefonnummer = new javax.swing.JLabel();
+        lblTelefonnummer2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Användarnamn", "Lösenord", "Förnamn", "Efternamn", "Email", "Titel", "Rumsnummer", "Admintillstånd" }));
+        cbOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Användarnamn", "Lösenord", "Förnamn", "Efternamn", "Email", "Titel", "Rumsnummer", "Admintillstånd", "Telefonnummer", "Telefonnummer2" }));
         cbOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbOptionActionPerformed(evt);
@@ -113,108 +118,129 @@ public class ChangeUserInfo extends javax.swing.JFrame {
 
         jLabel2.setText("Välj vad du vill ändra om användaren.");
 
+        jLabel3.setText("Telefonnummer");
+
+        jLabel4.setText("Telefonnummer2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(126, 126, 126)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblRoomNumber1)
-                                    .addGap(8, 8, 8))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(lblEmail1)
-                                    .addGap(69, 69, 69)))
-                            .addComponent(lblFirstname1)
-                            .addComponent(lblAdmin1)
+                            .addComponent(lblEmail1)
                             .addComponent(lblTitel1)
-                            .addComponent(lblSurname1)
-                            .addComponent(lblUsername1))
+                            .addComponent(lblRoomNumber1)
+                            .addComponent(lblAdmin1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblTitel, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                                    .addComponent(lblSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblFirstname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblRoomNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(145, 145, 145)
+                                .addGap(7, 7, 7)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cbOption, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(196, 196, 196)
+                                                .addComponent(cbOption, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(btnChangeInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                            .addComponent(txtNewInfo))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbYesNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtNewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cbYesNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnChangeInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblRoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel1)
-                    .addComponent(cbUser, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 147, Short.MAX_VALUE))
+                    .addComponent(cbUser, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsername1)
+                            .addComponent(lblFirstname1)
+                            .addComponent(lblSurname1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(196, 196, 196)
+                                .addComponent(jLabel2))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblTelefonnummer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblTelefonnummer2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 75, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsername1)
+                    .addComponent(lblUsername))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblUsername1)
-                        .addGap(28, 28, 28)
-                        .addComponent(lblFirstname1)
-                        .addGap(21, 21, 21)
-                        .addComponent(lblSurname1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblEmail1)
-                                .addGap(27, 27, 27)
-                                .addComponent(lblTitel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(lblRoomNumber1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(lblRoomNumber))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(lblEmail)
-                        .addGap(27, 27, 27)
-                        .addComponent(lblTitel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblUsername)
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFirstname)
-                            .addComponent(jLabel2))
-                        .addGap(21, 21, 21)
+                            .addComponent(lblFirstname1)
+                            .addComponent(lblFirstname))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSurname1)
+                            .addComponent(lblSurname))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSurname)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbYesNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnChangeInfo)))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAdmin1)
-                    .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87))
+                            .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblEmail1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitel1)
+                            .addComponent(lblTitel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblRoomNumber1)
+                            .addComponent(lblRoomNumber))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAdmin1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTelefonnummer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(lblTelefonnummer2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(208, 208, 208))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbYesNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnChangeInfo)
+                        .addGap(332, 332, 332))))
         );
 
         pack();
@@ -236,6 +262,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Anvandarnamn = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Användarnamnet har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(newInfo);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya användarnamnet rätt.");
@@ -246,6 +275,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Losenord = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya lösenordet rätt. Måste vara mellan 6 och 39 tecken.");
@@ -256,6 +288,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Fornamn = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Förnamnet har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya förnamnet rätt. Inga siffror.");
@@ -266,6 +301,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Efternamn = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Efternamnet har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya efternamnet rätt. Inga siffror.");
@@ -276,6 +314,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Email = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Emailen har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya Emailadressen rätt.");
@@ -286,6 +327,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Titel = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Titeln har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya titeln rätt. Endast bokstäver");
@@ -296,6 +340,9 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set Rumsnummer = '"+newInfo+"' where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Rumsnummert har ändrats!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "Fyll i det nya rumsnummert rätt.");
@@ -307,24 +354,54 @@ public class ChangeUserInfo extends javax.swing.JFrame {
                         String sql3 = "Update larare set IsAdmin = 1 where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql3);
                         JOptionPane.showMessageDialog(null, "Användaren har nu administrationsbehörighet!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
                     }
                     else if(yesno.contains("Nej")){
                         String sql4 = "Update larare set IsAdmin = 0 where Anvandarnamn = '"+username+"';";
                         DatabaseHandler.update(sql4);
                         JOptionPane.showMessageDialog(null, "Användaren har nu inte administrationsbehörighet!");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
+                    }
+                }
+                if(cb.equals("Telefonnummer")){
+                    if(Validation.isNumerical(newInfo) && newInfo.length() > 3 && newInfo.length() < 41){
+                        String telefonnummer = lblTelefonnummer.getText();
+                        String sql = "Update telefonnummer set nummer ='"+newInfo+"' where nummer = '"+telefonnummer+"';";
+                        DatabaseHandler.update(sql);
+                        JOptionPane.showMessageDialog(null, "Telefonnummret har nu ändrats");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
+                    }
+                    else{
+                    JOptionPane.showMessageDialog(null, "Fyll i ett giltigt telefonnummer, endast siffror mellan 4 och 40 tecken.");}
+                }
+                if(cb.equals("Telefonnummer2")){
+                    if(Validation.isNumerical(newInfo) && newInfo.length() > 3 && newInfo.length() < 41){
+                        String telefonnummer = lblTelefonnummer2.getText();
+                        String sql = "Update telefonnummer set nummer ='"+newInfo+"' where nummer = '"+telefonnummer+"';";
+                        DatabaseHandler.update(sql);
+                        JOptionPane.showMessageDialog(null, "Telefonnummret har nu ändrats.");
+                        cbUser.removeAllItems();
+                        fillComboBox();
+                        chooseUser(username);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Fyll i ett giltigt telefonnummer, endast siffror mellan 4 och 40 tecken.");
                     }
                 }
         }
         }
         else{
         JOptionPane.showMessageDialog(null, "Välj en lärare.");}
-        
     }//GEN-LAST:event_btnChangeInfoActionPerformed
 
-    private void cbUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUserActionPerformed
-        String cbstring = cbUser.getSelectedItem().toString();
-        int i = cbstring.indexOf(".");
-        String user = cbstring.substring(0, i);
+    private void chooseUser(String user)
+    {
         String username = DatabaseHandler.fetchSingle("select anvandarnamn from larare where anvandarnamn ='"+user+"'");
         String firstname = DatabaseHandler.fetchSingle("select fornamn from larare where anvandarnamn ='"+user+"'");
         String surname = DatabaseHandler.fetchSingle("select efternamn from larare where anvandarnamn ='"+user+"'");
@@ -332,6 +409,8 @@ public class ChangeUserInfo extends javax.swing.JFrame {
         String title = DatabaseHandler.fetchSingle("select titel from larare where anvandarnamn ='"+user+"'");
         String roomnumber = DatabaseHandler.fetchSingle("select rumsnummer from larare where anvandarnamn ='"+user+"'");
         String admin = DatabaseHandler.fetchSingle("select isadmin from larare where anvandarnamn ='"+user+"'");
+        String telefonnummer = DatabaseHandler.fetchSingle("SELECT nummer from telefonnummer join larare on larare.id = LarareId where larare.anvandarnamn = '"+user+"' order by nummer desc limit 1;");
+        String telefonnummer2 = DatabaseHandler.fetchSingle("SELECT nummer from telefonnummer join larare on larare.id = LarareId where larare.anvandarnamn = '"+user+"' order by nummer asc limit 1;");
         
         lblUsername.setText(username);
         lblFirstname.setText(firstname);
@@ -339,12 +418,24 @@ public class ChangeUserInfo extends javax.swing.JFrame {
         lblEmail.setText(email);
         lblTitel.setText(title);
         lblRoomNumber.setText(roomnumber);
+        lblTelefonnummer.setText(telefonnummer);
+        lblTelefonnummer2.setText(telefonnummer2);
         
         if(admin.equals("1")){
             lblAdmin.setText("Ja");
         }
         else if(admin.equals("0")){
             lblAdmin.setText("Nej");
+        }
+        else{
+        System.out.println("FEEEEEEEEL");}
+    }
+    private void cbUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUserActionPerformed
+        if(cbUser.getItemCount() > 0){
+        String cbstring = cbUser.getSelectedItem().toString();
+        int i = cbstring.indexOf(".");
+        String user = cbstring.substring(0, i);
+        chooseUser(user);
         }
     }//GEN-LAST:event_cbUserActionPerformed
 
@@ -420,6 +511,8 @@ public class ChangeUserInfo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbYesNo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblAdmin1;
     private javax.swing.JLabel lblEmail;
@@ -430,6 +523,8 @@ public class ChangeUserInfo extends javax.swing.JFrame {
     private javax.swing.JLabel lblRoomNumber1;
     private javax.swing.JLabel lblSurname;
     private javax.swing.JLabel lblSurname1;
+    private javax.swing.JLabel lblTelefonnummer;
+    private javax.swing.JLabel lblTelefonnummer2;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JLabel lblTitel1;
     private javax.swing.JLabel lblUsername;
