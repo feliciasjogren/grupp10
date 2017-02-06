@@ -23,87 +23,88 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane1" pref="431" max="32767" attributes="0"/>
-                          <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfInviteToMeeting" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfTitle" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jScrollPane1" pref="431" max="32767" attributes="0"/>
+                  <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfInviteToMeeting" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfTitle" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="lblParticipants" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblValjDagOchTid" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblValjDagOchTid" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="dcDate5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="36" max="32767" attributes="0"/>
+                              <Component id="cbHour5" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="dcDate5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="36" max="32767" attributes="0"/>
-                                      <Component id="cbHour5" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="dcDate4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cbHour4" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="dcDate3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cbHour3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="dcDate2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cbHour2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="dcDate1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cbHour1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblTidKolon1" min="-2" pref="14" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cbMinute2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblTidKolon2" min="-2" pref="14" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cbMinute3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblTidKolon3" min="-2" pref="14" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cbMinute4" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblTidKolon4" min="-2" pref="14" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cbMinute5" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblTidKolon" min="-2" pref="14" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cbMinute1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="182" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnInviteParticipants" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="dcDate4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="cbHour4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="dcDate3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="cbHour3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="dcDate2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="cbHour2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="dcDate1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="cbHour1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblTidKolon1" min="-2" pref="14" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="cbMinute2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblTidKolon2" min="-2" pref="14" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="cbMinute3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lblTidKolon3" alignment="0" min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblTidKolon" min="-2" pref="14" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="cbMinute1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblTidKolon4" min="-2" pref="14" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="cbMinute5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="cbMinute4" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="182" max="32767" attributes="0"/>
+                      <Component id="btnInviteParticipants" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
@@ -122,63 +123,57 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfTitle" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="lblValjDagOchTid" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="dcDate1" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="cbMinute1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cbHour1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblTidKolon" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="dcDate2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="cbHour2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cbMinute2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblTidKolon1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="dcDate1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="cbMinute1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbHour1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblTidKolon" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="dcDate3" min="-2" max="-2" attributes="0"/>
+                              <Component id="dcDate2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="cbHour3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbMinute3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTidKolon2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbHour2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbMinute2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTidKolon1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="dcDate4" min="-2" max="-2" attributes="0"/>
+                      <Component id="dcDate3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="cbHour4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbMinute4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTidKolon3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbHour3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbMinute3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTidKolon2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblValjDagOchTid" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblTidKolon3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="113" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cbMinute4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbHour4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="dcDate4" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -195,13 +190,21 @@
                       <Component id="dcDate5" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="com.toedter.calendar.JDateChooser" name="dcDate1">
+      <Properties>
+        <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+          <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,-26,112,122,112,7,-64,120"/>
+        </Property>
+        <Property name="minSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+          <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,-1,-1,-57,124,-29,-121,-57,-64,120"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="tfInviteToMeeting">
       <Properties>
@@ -446,16 +449,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jListTest">
+        <Component class="javax.swing.JList" name="listSourceParticipants">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-                <StringItem index="4" value="Item 5"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
